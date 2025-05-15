@@ -1,7 +1,8 @@
-package com.example.chronosnap;
+package com.example.chronosnap.ViewModel;
 
 import android.os.Bundle;
 
+import com.example.chronosnap.R;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
