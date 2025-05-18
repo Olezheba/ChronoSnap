@@ -39,7 +39,14 @@ dependencies {
     implementation libs.navigation.fragment
     implementation libs.navigation.ui
     testImplementation libs.junit
+
+//    firebase
+    implementation libs.firebase.auth
     implementation platform(libs.firebase.bom)
+    implementation(libs.credentials)
+    implementation(libs.credentials.play.services.auth)
+    implementation(libs.googleid)
+
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
 }

@@ -1,6 +1,8 @@
 [versions]
 agp = "8.8.0"
+credentialsPlayServicesAuth = "1.3.0"
 firebaseBom = "33.13.0"
+googleid = "1.1.1"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
@@ -11,7 +13,11 @@ navigationFragment = "2.9.0"
 navigationUi = "2.9.0"
 
 [libraries]
+credentials = { module = "androidx.credentials:credentials", version.ref = "credentialsPlayServicesAuth" }
+credentials-play-services-auth = { module = "androidx.credentials:credentials-play-services-auth", version.ref = "credentialsPlayServicesAuth" }
+firebase-auth = { module = "com.google.firebase:firebase-auth" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
+googleid = { module = "com.google.android.libraries.identity.googleid:googleid", version.ref = "googleid" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
