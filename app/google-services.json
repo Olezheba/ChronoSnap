@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "661077967274",
+    "firebase_url": "https://chronosnap-7add2-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "chronosnap-7add2",
+    "storage_bucket": "chronosnap-7add2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:661077967274:android:432d88335b7c65d8232bd3",
+        "android_client_info": {
+          "package_name": "com.example.chronosnap"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYXQz0L3wqGHJ6fVdTJ6iRrCM5aj9Ugpo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

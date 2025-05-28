@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">ChronoSnap</string>
-    <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
@@ -43,4 +42,23 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login" translatable="false">Войти</string>
+    <string name="password">Пароль</string>
+    <string name="login_header">Вход</string>
+    <string name="username_hint">Имя пользователя</string>
+    <string name="action_stopwatch">Секундомер</string>
+    <string name="action_statistics">Статистика</string>
+    <string name="action_list">Список дел</string>
+    <string name="action_calendar">Календарь</string>
+    <string name="action_settings">Настройки</string>
+    <string name="no_account">Ещё нет аккаунта?</string>
+    <string name="registration">Регистрация</string>
+    <string name="sign_up">Зарегистрироваться</string>
+    <string name="have_account">Уже есть аккаунт?</string>
+    <string name="email_input_error">Некорректный email</string>
+    <string name="password_input_error">Пароль должен содержать от 8 до 25 символов</string>
+    <string name="empty_string">Пустое поле</string>
 </resources>

@@ -1,10 +1,28 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.chronosnap.ViewModel.MainActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_statistics"
+        android:icon="@drawable/ic_statistics"
+        android:title="@string/action_statistics"
+        app:itemIconTint="@drawable/nav_icon_selector"/>
+    <item
+        android:id="@+id/action_list"
+        android:icon="@drawable/ic_list"
+        android:title="@string/action_list"
+        app:itemIconTint="@drawable/nav_icon_selector"/>
+    <item
+        android:id="@+id/action_stopwatch"
+        android:icon="@drawable/ic_clock"
+        android:title="@string/action_stopwatch"
+        app:itemIconTint="@drawable/nav_icon_selector"/>
+    <item
+        android:id="@+id/action_calendar"
+        android:icon="@drawable/ic_calendar"
+        android:title="@string/action_calendar"
+        app:itemIconTint="@drawable/nav_icon_selector"/>
     <item
         android:id="@+id/action_settings"
-        android:orderInCategory="100"
+        android:icon="@drawable/ic_settings"
         android:title="@string/action_settings"
-        app:showAsAction="never" />
+        app:itemIconTint="@drawable/nav_icon_selector"/>
 </menu>

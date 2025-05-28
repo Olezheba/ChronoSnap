@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
@@ -28,6 +29,7 @@ android {
     }
     buildFeatures {
         viewBinding true
+        dataBinding true
     }
 }
 
@@ -39,6 +41,9 @@ dependencies {
     implementation libs.navigation.fragment
     implementation libs.navigation.ui
     testImplementation libs.junit
+    implementation libs.androidx.room.runtime
+    implementation libs.androidx.navigation.ui.v277
+    implementation libs.androidx.navigation.fragment.v277
 
 //    firebase
     implementation libs.firebase.auth
@@ -46,6 +51,12 @@ dependencies {
     implementation(libs.credentials)
     implementation(libs.credentials.play.services.auth)
     implementation(libs.googleid)
+    implementation libs.firebase.database
+    implementation libs.firebase.database.v2030
+
+//    livedata
+    implementation libs.androidx.lifecycle.livedata
+    implementation libs.androidx.lifecycle.viewmodel
 
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
