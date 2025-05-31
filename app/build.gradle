@@ -42,8 +42,12 @@ dependencies {
     implementation libs.navigation.ui
     testImplementation libs.junit
     implementation libs.androidx.room.runtime
-    implementation libs.androidx.navigation.ui.v277
-    implementation libs.androidx.navigation.fragment.v277
+
+//    navigation Component
+    implementation libs.navigation.fragment
+    implementation libs.navigation.ui
+    implementation libs.navigation.fragment
+    implementation libs.navigation.ui
 
 //    firebase
     implementation libs.firebase.auth
@@ -60,4 +64,6 @@ dependencies {
 
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
+
+    implementation 'com.kizitonwose.calendar:view:2.3.0'
 }

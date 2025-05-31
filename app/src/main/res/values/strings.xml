@@ -61,4 +61,17 @@
     <string name="email_input_error">Некорректный email</string>
     <string name="password_input_error">Пароль должен содержать от 8 до 25 символов</string>
     <string name="empty_string">Пустое поле</string>
+    <string name="in">Через</string>
+    <string name="under_stopwatch_text">Через %1$s минут после запуска вам придет \n напоминание о текущей записи</string>
+    <string name="on_stopwatch_text">"Нажмите для начала\nзаписи активности "</string>
+    <string name="notifications">Уведомления</string>
+    <string name="from">С</string>
+    <string name="to">до</string>
+    <string name="every">каждые</string>
+    <string name="minutes">минут</string>
+    <string name="categories">Категории</string>
+    <string name="add_category">Добавить категорию</string>
+    <string name="account_control">Управление аккаунтом</string>
+    <string name="edit_info">Изменить данные</string>
+    <string name="log_out">Выйти из аккаунта</string>
 </resources>

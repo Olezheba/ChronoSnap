@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".UI.View.CalendarFragment">
+
+    <com.sahana.horizontalcalendar.HorizontalCalendar
+        android:id="@+id/timelineCalendar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:numOfDays="90"
+        app:setDateTextSize="22sp"
+        app:setMonthTextSize="18sp"
+        app:setSelectedBgColor="@color/blue"
+        app:setSelectedTextColor="@color/white"
+        app:setTextColor="@color/white"
+        app:setWeekTextSize="13sp" />
+
+</LinearLayout>

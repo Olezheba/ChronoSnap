@@ -1,27 +1,27 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_statistics"
+        android:id="@+id/fragment_statistics"
         android:icon="@drawable/ic_statistics"
         android:title="@string/action_statistics"
         app:itemIconTint="@drawable/nav_icon_selector"/>
     <item
-        android:id="@+id/action_list"
+        android:id="@+id/fragment_list"
         android:icon="@drawable/ic_list"
         android:title="@string/action_list"
         app:itemIconTint="@drawable/nav_icon_selector"/>
     <item
-        android:id="@+id/action_stopwatch"
+        android:id="@+id/fragment_stopwatch"
         android:icon="@drawable/ic_clock"
         android:title="@string/action_stopwatch"
         app:itemIconTint="@drawable/nav_icon_selector"/>
     <item
-        android:id="@+id/action_calendar"
+        android:id="@+id/fragment_calendar"
         android:icon="@drawable/ic_calendar"
         android:title="@string/action_calendar"
         app:itemIconTint="@drawable/nav_icon_selector"/>
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/fragment_settings"
         android:icon="@drawable/ic_settings"
         android:title="@string/action_settings"
         app:itemIconTint="@drawable/nav_icon_selector"/>

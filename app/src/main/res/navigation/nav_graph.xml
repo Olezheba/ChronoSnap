@@ -3,7 +3,37 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@layout/fragment_stopwatch">
+    app:startDestination="@id/fragment_stopwatch">
+
+    <fragment
+        android:id="@+id/fragment_stopwatch"
+        android:label="Stopwatch"
+        android:name="com.example.chronosnap.UI.View.StopwatchFragment"
+        tools:layout="@layout/fragment_stopwatch"/>
+
+    <fragment
+        android:id="@+id/fragment_statistics"
+        android:label="Statistics"
+        android:name="com.example.chronosnap.UI.View.StatisticsFragment"
+        tools:layout="@layout/fragment_statistics"/>
+
+    <fragment
+        android:id="@+id/fragment_list"
+        android:label="List"
+        android:name="com.example.chronosnap.UI.View.ListFragment"
+        tools:layout="@layout/fragment_list"/>
+
+    <fragment
+        android:id="@+id/fragment_calendar"
+        android:label="Calendar"
+        android:name="com.example.chronosnap.UI.View.CalendarFragment"
+        tools:layout="@layout/fragment_calendar"/>
+
+    <fragment
+        android:id="@+id/fragment_settings"
+        android:label="Settings"
+        android:name="com.example.chronosnap.UI.View.SettingsFragment"
+        tools:layout="@layout/fragment_settings"/>
 
 
 </navigation>

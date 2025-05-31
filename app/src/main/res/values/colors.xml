@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    //основные цвета интерфейса
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="the_lightest_gray">#F5F5F5</color>
     <color name="dark_gray">#676767</color>
     <color name="blue">#5B96D7</color>
+
+    //Вспомогательные цвета
     <color name="red">#FF3333</color>
+
 </resources>

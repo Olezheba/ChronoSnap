@@ -5,6 +5,7 @@ firebaseBom = "33.13.0"
 firebaseDatabase = "21.0.0"
 firebaseDatabaseVersion = "20.3.0"
 googleid = "1.1.1"
+horizontalcalendar = "1.3.4"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
@@ -32,6 +33,7 @@ firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "fir
 firebase-database = { module = "com.google.firebase:firebase-database", version.ref = "firebaseDatabase" }
 firebase-database-v2030 = { module = "com.google.firebase:firebase-database", version.ref = "firebaseDatabaseVersion" }
 googleid = { module = "com.google.android.libraries.identity.googleid:googleid", version.ref = "googleid" }
+horizontalcalendar = { module = "devs.mulham.horizontalcalendar:horizontalcalendar", version.ref = "horizontalcalendar" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }

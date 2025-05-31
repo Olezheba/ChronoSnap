@@ -1,12 +1,9 @@
 package com.example.chronosnap.UI.View;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.chronosnap.R;
@@ -20,17 +17,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_nav);
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+
+        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.nav_host_fragment);
+        NavController navController = navHostFragment.getNavController();
 
         NavigationUI.setupWithNavController(bottomNav, navController);
-
     }
 
-
-//    @Override
-//    public boolean onSupportNavigateUp() {
-//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-//        return NavigationUI.navigateUp(navController, appBarConfiguration)
-//                || super.onSupportNavigateUp();
-//    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.nav_host_fragment);
+        NavController navController = navHostFragment.getNavController();
+        return navController.navigateUp() || super.onSupportNavigateUp();
+    }
 }

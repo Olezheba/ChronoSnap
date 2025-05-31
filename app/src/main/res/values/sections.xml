@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="sections">
+        <item>Срочно и важно</item>
+        <item>Срочно, но не важно</item>
+        <item>Не срочно, но важно</item>
+        <item>Не срочно и не важно</item>
+    </string-array>
+</resources>
