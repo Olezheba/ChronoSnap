@@ -81,4 +81,5 @@
     <string name="day">День</string>
     <string name="week">Неделя</string>
     <string name="month">Месяц</string>
+    <string name="add_task">Добавить задачу</string>
 </resources>

@@ -7,6 +7,7 @@ import com.example.chronosnap.Domain.Entities.Category;
 import com.example.chronosnap.Domain.Entities.Task;
 
 import java.util.List;
+import java.util.Map;
 
 public interface AppRepository {
 
@@ -28,6 +29,7 @@ public interface AppRepository {
     public LiveData<List<ActivityEntry>> getEntriesForPeriod(String period);
     public LiveData<Task> getEntryById(String id);
     public int getCategoryTimeForPeriod(int categoryIndex, String startDate, String finishDate);
+    public Map<String, Integer> getAllCategoriesTimeForPeriod(String startDate, String finishDate);
     public void insertActivityEntry(ActivityEntry activityEntry);
     public void deleteActivityEntry(String id);
 }

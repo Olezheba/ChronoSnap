@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:orientation="horizontal">
+        android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -20,7 +20,7 @@
             android:layout_marginTop="20dp">
 
             <ImageButton
-                android:id="@+id/calendar_back_arrow_list"
+                android:id="@+id/back"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -30,7 +30,7 @@
                 android:textSize="20sp"/>
 
             <TextView
-                android:id="@+id/month_year_text_list"
+                android:id="@+id/month_year_text"
                 android:layout_width="0dp"
                 android:layout_weight="2"
                 android:layout_height="wrap_content"
@@ -39,7 +39,7 @@
                 android:textAlignment="center"/>
 
             <ImageButton
-                android:id="@+id/calendar_forward_arrow_list"
+                android:id="@+id/forward"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -120,7 +120,7 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/calendar_view_list"
+        android:id="@+id/calendar_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
@@ -153,7 +153,7 @@
                     android:id="@+id/section_btn_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="none"
+                    android:background="@android:color/transparent"
                     android:src="@drawable/arrow_right" />
             </LinearLayout>
             <androidx.recyclerview.widget.RecyclerView
@@ -163,6 +163,27 @@
                 tools:listitem="@layout/item_task"
                 android:background="@color/white"
                 android:visibility="gone"/>
+            <LinearLayout
+                android:id="@+id/add_view_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_marginBottom="2dp"
+                android:visibility="gone">
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/add" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/add_task"
+                    android:textSize="18sp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -183,7 +204,7 @@
                     android:id="@+id/section_btn_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="none"
+                    android:background="@android:color/transparent"
                     android:src="@drawable/arrow_right" />
             </LinearLayout>
             <androidx.recyclerview.widget.RecyclerView
@@ -193,6 +214,27 @@
                 tools:listitem="@layout/item_task"
                 android:background="@color/white"
                 android:visibility="gone"/>
+            <LinearLayout
+                android:id="@+id/add_view_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_marginBottom="2dp"
+                android:visibility="gone">
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/add" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/add_task"
+                    android:textSize="18sp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -213,7 +255,7 @@
                     android:id="@+id/section_btn_3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="none"
+                    android:background="@android:color/transparent"
                     android:src="@drawable/arrow_right" />
             </LinearLayout>
             <androidx.recyclerview.widget.RecyclerView
@@ -223,6 +265,27 @@
                 tools:listitem="@layout/item_task"
                 android:background="@color/white"
                 android:visibility="gone"/>
+            <LinearLayout
+                android:id="@+id/add_view_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_marginBottom="2dp"
+                android:visibility="gone">
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/add" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/add_task"
+                    android:textSize="18sp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -243,7 +306,7 @@
                     android:id="@+id/section_btn_4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="none"
+                    android:background="@android:color/transparent"
                     android:src="@drawable/arrow_right" />
             </LinearLayout>
             <androidx.recyclerview.widget.RecyclerView
@@ -253,6 +316,27 @@
                 tools:listitem="@layout/item_task"
                 android:background="@color/white"
                 android:visibility="gone"/>
+            <LinearLayout
+                android:id="@+id/add_view_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_marginBottom="2dp"
+                android:visibility="gone">
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/add" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/add_task"
+                    android:textSize="18sp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
 
         </LinearLayout>
 

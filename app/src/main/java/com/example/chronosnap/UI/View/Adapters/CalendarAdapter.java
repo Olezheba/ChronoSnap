@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.chronosnap.R;
@@ -50,8 +51,11 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder>
             holder.dayOfMonth.setText("");
         else {
             holder.dayOfMonth.setText(String.valueOf(date.getDayOfMonth()));
-            if(date.equals(CalendarUtils.selectedDate))
+            if(date.equals(CalendarUtils.selectedDate)) {
                 holder.parentView.setBackgroundColor(Color.LTGRAY);
+                holder.dayOfMonth.setTextColor(ContextCompat.getColor
+                        (holder.itemView.getContext(), R.color.blue));
+            }
         }
     }
 
