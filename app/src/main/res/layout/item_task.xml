@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <View
+        android:id="@+id/category_color_view"
+        android:layout_width="15dp"
+        android:layout_height="match_parent"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp">
+
+        <CheckBox
+            android:id="@+id/task_checkbox"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/task_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="16sp"
+            android:layout_margin="10dp"
+            android:text="Название"/>
+
+        <ImageButton
+            android:id="@+id/task_edit_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/edit"
+            android:background="none"
+            android:layout_gravity="center"
+            android:layout_marginRight="10dp"/>
+
+        <ImageButton
+            android:id="@+id/task_shift_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/arrow_shift"
+            android:background="none"
+            android:layout_gravity="center"
+            android:layout_marginRight="5dp"/>
+
+    </LinearLayout>
+</LinearLayout>

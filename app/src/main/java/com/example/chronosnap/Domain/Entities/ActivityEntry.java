@@ -20,8 +20,8 @@ public class ActivityEntry {
     @ColumnInfo(name = "user_id")
     private String userId;
     private String name;
-    private byte categoryIndex;
-    private LocalDate date;
+    private int categoryIndex;
+    private String date;
     private long startTime;
     private long finishTime;
     private long longitude;
@@ -31,7 +31,7 @@ public class ActivityEntry {
         this.userId = userId;
         this.name = name;
         this.categoryIndex = categoryIndex;
-        date = LocalDate.now();
+        date = LocalDate.now().toString();
         this.startTime = startTime;
         finishTime = System.currentTimeMillis();
         longitude = finishTime-startTime;
@@ -42,7 +42,7 @@ public class ActivityEntry {
         this.userId = userId;
         this.name = name;
         this.categoryIndex = categoryIndex;
-        date = LocalDate.now();
+        date = LocalDate.now().toString();
         this.startTime = startTime;
         this.finishTime = finishTime;
         longitude = finishTime-startTime;
@@ -72,11 +72,11 @@ public class ActivityEntry {
         this.id = id;
     }
 
-    public byte getCategoryIndex() {
+    public int getCategoryIndex() {
         return categoryIndex;
     }
 
-    public void setCategoryIndex(byte categoryIndex) {
+    public void setCategoryIndex(int categoryIndex) {
         this.categoryIndex = categoryIndex;
     }
 
@@ -104,7 +104,7 @@ public class ActivityEntry {
         this.longitude = longitude;
     }
 
-    public LocalDate getDate() { return date; }
+    public String getDate() { return date; }
 
-    public void setDate(LocalDate date) { this.date = date; }
+    public void setDate(String date) { this.date = date; }
 }

@@ -7,7 +7,6 @@
     tools:context=".UI.View.LoginFragment"
     android:gravity="center">
 
-    <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:layout_marginTop="35dp"
         android:layout_width="wrap_content"

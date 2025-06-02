@@ -3,34 +3,258 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".UI.View.ListFragment"
-    android:orientation="vertical">
-
-    <com.kizitonwose.calendar.view.WeekCalendarView
-        android:id="@+id/weekCalendarView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:calendarDaySize="48dp" />
+    android:orientation="vertical"
+    android:background="@color/the_lightest_gray">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp">
-
-        <ListView
-            android:id="@+id/timeline"
-            android:layout_width="50dp"
+        android:background="@color/white">
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:entries="@array/time"
-            tools:listitem="@layout/item_time" />
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp">
 
-        <ListView
-            android:id="@+id/activityline"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            <ImageButton
+                android:id="@+id/calendar_back_arrow_list"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/arrow_back"
+                android:background="@null"
+                android:textStyle="bold"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/month_year_text_list"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:text="Feb 2021"
+                android:textSize="20sp"
+                android:textAlignment="center"/>
+
+            <ImageButton
+                android:id="@+id/calendar_forward_arrow_list"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/arrow_forward"
+                android:background="@null"
+                android:textStyle="bold"
+                android:textSize="20sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:listitem="@layout/item_activity" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="ПН"
+                android:textColor="@color/dark_gray"
+                android:textAlignment="center"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="ВТ"
+                android:textColor="@color/dark_gray"
+                android:textAlignment="center"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="СР"
+                android:textColor="@color/dark_gray"
+                android:textAlignment="center"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="ЧТ"
+                android:textColor="@color/dark_gray"
+                android:textAlignment="center"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="ПТ"
+                android:textColor="@color/dark_gray"
+                android:textAlignment="center"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="СБ"
+                android:textColor="@color/dark_gray"
+                android:textAlignment="center"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="ВС"
+                android:textColor="@color/dark_gray"
+                android:textAlignment="center"
+                android:textSize="16sp"/>
+        </LinearLayout>
     </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/calendar_view_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <ScrollView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:background="@color/white"
+                android:layout_marginBottom="2dp">
+                <TextView
+                    android:id="@+id/section_name_1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/section_1"
+                    android:textSize="18sp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"/>
+                <ImageButton
+                    android:id="@+id/section_btn_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="none"
+                    android:src="@drawable/arrow_right" />
+            </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/task_list_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/item_task"
+                android:background="@color/white"
+                android:visibility="gone"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:background="@color/white"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="5dp">
+                <TextView
+                    android:id="@+id/section_name_2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/section_2"
+                    android:textSize="18sp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"/>
+                <ImageButton
+                    android:id="@+id/section_btn_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="none"
+                    android:src="@drawable/arrow_right" />
+            </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/task_list_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/item_task"
+                android:background="@color/white"
+                android:visibility="gone"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:background="@color/white"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="5dp">
+                <TextView
+                    android:id="@+id/section_name_3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/section_3"
+                    android:textSize="18sp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"/>
+                <ImageButton
+                    android:id="@+id/section_btn_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="none"
+                    android:src="@drawable/arrow_right" />
+            </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/task_list_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/item_task"
+                android:background="@color/white"
+                android:visibility="gone"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:background="@color/white"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="5dp">
+                <TextView
+                    android:id="@+id/section_name_4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/section_4"
+                    android:textSize="18sp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"/>
+                <ImageButton
+                    android:id="@+id/section_btn_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="none"
+                    android:src="@drawable/arrow_right" />
+            </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/task_list_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/item_task"
+                android:background="@color/white"
+                android:visibility="gone"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
 </LinearLayout>

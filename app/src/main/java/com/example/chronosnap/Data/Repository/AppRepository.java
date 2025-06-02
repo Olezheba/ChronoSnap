@@ -25,8 +25,9 @@ public interface AppRepository {
     public void editTask(Task task, String id);
 
     //ActivityEntry
-    public LiveData<List<ActivityEntry>> getEntriesForPeriod(String userId, String period);
+    public LiveData<List<ActivityEntry>> getEntriesForPeriod(String period);
     public LiveData<Task> getEntryById(String id);
+    public int getCategoryTimeForPeriod(int categoryIndex, String startDate, String finishDate);
     public void insertActivityEntry(ActivityEntry activityEntry);
     public void deleteActivityEntry(String id);
 }

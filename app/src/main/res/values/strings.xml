@@ -74,4 +74,11 @@
     <string name="account_control">Управление аккаунтом</string>
     <string name="edit_info">Изменить данные</string>
     <string name="log_out">Выйти из аккаунта</string>
+    <string name="section_1">Срочно и важно</string>
+    <string name="section_2">Срочно, но не важно</string>
+    <string name="section_3">Не срочно, но важно</string>
+    <string name="section_4">Не срочно и не важно</string>
+    <string name="day">День</string>
+    <string name="week">Неделя</string>
+    <string name="month">Месяц</string>
 </resources>
