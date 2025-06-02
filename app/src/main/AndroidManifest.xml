@@ -17,12 +17,12 @@
         android:theme="@style/Theme.ChronoSnap"
         tools:targetApi="31">
         <activity
-            android:name=".UI.View.MainActivity"
+            android:name=".UI.View.Activities.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.ChronoSnap">
         </activity>
         <activity
-            android:name=".UI.View.AuthActivity"
+            android:name=".UI.View.Activities.AuthActivity"
             android:exported="true"
             android:theme="@style/Theme.ChronoSnap">
             <intent-filter>

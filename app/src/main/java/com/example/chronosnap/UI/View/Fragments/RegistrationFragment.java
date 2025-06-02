@@ -1,4 +1,4 @@
-package com.example.chronosnap.UI.View;
+package com.example.chronosnap.UI.View.Fragments;
 
 import static android.content.Context.MODE_PRIVATE;
 import static androidx.databinding.DataBindingUtil.setContentView;
@@ -16,10 +16,9 @@ import androidx.fragment.app.Fragment;
 
 import com.example.chronosnap.Domain.Entities.User;
 import com.example.chronosnap.R;
-import com.example.chronosnap.databinding.FragmentLoginBinding;
+import com.example.chronosnap.UI.View.Activities.MainActivity;
 import com.example.chronosnap.databinding.FragmentRegistrationBinding;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 

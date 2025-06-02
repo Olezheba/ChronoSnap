@@ -1,4 +1,4 @@
-package com.example.chronosnap.UI.View;
+package com.example.chronosnap.UI.View.Fragments;
 
 import android.os.Bundle;
 

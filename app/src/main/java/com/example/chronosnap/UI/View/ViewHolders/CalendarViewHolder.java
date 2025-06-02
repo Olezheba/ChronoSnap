@@ -1,4 +1,4 @@
-package com.example.chronosnap.UI.View;
+package com.example.chronosnap.UI.View.ViewHolders;
 
 import android.view.View;
 import android.widget.TextView;

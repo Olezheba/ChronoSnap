@@ -1,4 +1,4 @@
-package com.example.chronosnap.UI.View;
+package com.example.chronosnap.UI.View.Fragments;
 
 import static com.example.chronosnap.Utils.CalendarUtils.daysInWeekArray;
 
@@ -32,7 +32,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class CalendarFragment extends Fragment implements CalendarAdapter.OnItemListener {
+public class TimelineFragment extends Fragment implements CalendarAdapter.OnItemListener {
 
     private TextView monthYearText;
     private RecyclerView calendarRecyclerView;
@@ -45,7 +45,7 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_calendar, container, false);
+        View view = inflater.inflate(R.layout.fragment_timeline, container, false);
 
         monthYearText = view.findViewById(R.id.month_year_text);
         calendarRecyclerView = view.findViewById(R.id.calendar_view);

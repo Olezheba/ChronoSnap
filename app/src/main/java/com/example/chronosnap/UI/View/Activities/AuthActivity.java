@@ -1,15 +1,13 @@
-package com.example.chronosnap.UI.View;
+package com.example.chronosnap.UI.View.Activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.NavigationUI;
 
 import com.example.chronosnap.R;
+import com.example.chronosnap.UI.View.Fragments.LoginFragment;
 
 public class AuthActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.example.chronosnap.UI.View;
+package com.example.chronosnap.UI.View.Fragments;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.chronosnap.R;
+import com.example.chronosnap.UI.View.Activities.MainActivity;
 import com.example.chronosnap.databinding.FragmentLoginBinding;
 import com.google.firebase.auth.FirebaseAuth;
 

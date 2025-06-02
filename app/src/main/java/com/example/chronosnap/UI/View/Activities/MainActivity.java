@@ -1,4 +1,4 @@
-package com.example.chronosnap.UI.View;
+package com.example.chronosnap.UI.View.Activities;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
