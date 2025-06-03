@@ -10,9 +10,9 @@ public class Category {
 
     private String userId;
     private String name;
-    private byte colorIndex;
+    private int colorIndex;
 
-    public Category(String userId, String name, byte ci) {
+    public Category(String userId, String name, int ci) {
         this.userId = userId;
         this.name = name;
         colorIndex = ci;
@@ -34,11 +34,11 @@ public class Category {
         this.name = name;
     }
 
-    public byte getColorIndex() {
+    public int getColorIndex() {
         return colorIndex;
     }
 
-    public void setColorIndex(byte colorIndex) {
+    public void setColorIndex(int colorIndex) {
         this.colorIndex = colorIndex;
     }
 

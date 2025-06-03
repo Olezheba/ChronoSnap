@@ -62,7 +62,7 @@
     <string name="password_input_error">Пароль должен содержать от 8 до 25 символов</string>
     <string name="empty_string">Пустое поле</string>
     <string name="in">Через</string>
-    <string name="under_stopwatch_text">Через %1$s минут после запуска вам придет \n напоминание о текущей записи</string>
+    <string name="under_stopwatch_text">Через 10 минут после запуска вам придет \n напоминание о текущей записи</string>
     <string name="on_stopwatch_text">"Нажмите для начала\nзаписи активности "</string>
     <string name="notifications">Уведомления</string>
     <string name="from">С</string>
@@ -82,4 +82,9 @@
     <string name="week">Неделя</string>
     <string name="month">Месяц</string>
     <string name="add_task">Добавить задачу</string>
+    <string name="saving_up">Сохранение\n</string>
+    <string name="choose_category">Выберите категорию:</string>
+    <string name="saving_checked_text">Отобразить экранное время за период записи</string>
+    <string name="save">Сохранить</string>
+    <string name="delete">Удалить</string>
 </resources>

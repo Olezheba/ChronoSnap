@@ -128,7 +128,7 @@ public class TimelineFragment extends Fragment implements CalendarAdapter.OnItem
                     .toEpochMilli();
             for (int i = 0; i<activityEntries.size(); i++){
                 View view = new View(context);
-                long height = Math.round(activityEntries.get(i).getLongitude()/60000f*density);
+                long height = Math.round(activityEntries.get(i).getDuration()/60000f*density);
                 long topMargin = Math.round((activityEntries.get(i).getStartTime()-currentDate)/60000f*density);
                 FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
                         FrameLayout.LayoutParams.MATCH_PARENT,

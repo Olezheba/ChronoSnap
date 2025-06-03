@@ -14,7 +14,8 @@ import java.time.Duration;
 
 @Entity(tableName = "activity_entries")
 public class ActivityEntry {
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
+    @NonNull
     private String id;
 
     @ColumnInfo(name = "user_id")
@@ -23,8 +24,7 @@ public class ActivityEntry {
     private int categoryIndex;
     private String date;
     private long startTime;
-    private long finishTime;
-    private long longitude;
+    private long duration;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public ActivityEntry (String userId, String name, byte categoryIndex, long startTime){
@@ -33,19 +33,17 @@ public class ActivityEntry {
         this.categoryIndex = categoryIndex;
         date = LocalDate.now().toString();
         this.startTime = startTime;
-        finishTime = System.currentTimeMillis();
-        longitude = finishTime-startTime;
+        duration = System.currentTimeMillis()-startTime;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public ActivityEntry (String userId, String name, byte categoryIndex, long startTime, long finishTime){
+    public ActivityEntry (String userId, String name, byte categoryIndex, long startTime, long duration){
         this.userId = userId;
         this.name = name;
         this.categoryIndex = categoryIndex;
         date = LocalDate.now().toString();
         this.startTime = startTime;
-        this.finishTime = finishTime;
-        longitude = finishTime-startTime;
+        this.duration = duration;
     }
 
     public String getUserId() {
@@ -88,21 +86,9 @@ public class ActivityEntry {
         this.startTime = startTime;
     }
 
-    public long getFinishTime() {
-        return finishTime;
-    }
+    public long getDuration() { return duration; }
 
-    public void setFinishTime(long finishTime) {
-        this.finishTime = finishTime;
-    }
-
-    public long getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(long longitude) {
-        this.longitude = longitude;
-    }
+    public void setDuration(long duration) { this.duration = duration; }
 
     public String getDate() { return date; }
 
