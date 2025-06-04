@@ -10,17 +10,13 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
+        android:name=".App"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ChronoSnap"
         tools:targetApi="31">
-        <activity
-            android:name=".UI.View.Activities.MainActivity"
-            android:exported="true"
-            android:theme="@style/Theme.ChronoSnap">
-        </activity>
         <activity
             android:name=".UI.View.Activities.AuthActivity"
             android:exported="true"
@@ -29,6 +25,11 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".UI.View.Activities.MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.ChronoSnap">
         </activity>
     </application>
 

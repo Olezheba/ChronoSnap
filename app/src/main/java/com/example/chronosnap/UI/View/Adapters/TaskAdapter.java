@@ -24,6 +24,7 @@ public class TaskAdapter extends ArrayAdapter<Task> {
         super(context, R.layout.item_task, array);
     }
 
+    @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
@@ -34,8 +35,9 @@ public class TaskAdapter extends ArrayAdapter<Task> {
         }
 
         TextView tv =  convertView.findViewById(R.id.task_text);
+        assert task != null;
         tv.setText(task.getName());
-        ((View) convertView.findViewById(R.id.category_color_view)).setBackgroundColor(task.getCategory().getColorIndex());
+        (convertView.findViewById(R.id.category_color_view)).setBackgroundColor(task.getCategoryColor());
 
         ImageButton shift = convertView.findViewById(R.id.task_shift_btn);
         shift.setOnClickListener(v -> {

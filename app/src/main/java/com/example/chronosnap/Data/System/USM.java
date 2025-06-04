@@ -50,7 +50,7 @@ public class USM {
                     long start = foregroundTimes.get(pkg);
                     long end = event.getTimeStamp();
                     ActivityEntry entry = new ActivityEntry(FirebaseAuth.getInstance().getUid(),
-                            appName, (byte)0, start, end);
+                            0, start, end, 2);
                     repo.insertActivityEntry(entry);
 
                     foregroundTimes.remove(pkg);

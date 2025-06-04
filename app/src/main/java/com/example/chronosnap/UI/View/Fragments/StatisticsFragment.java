@@ -10,20 +10,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.chronosnap.Domain.Entities.Category;
-import com.example.chronosnap.R;
-import com.example.chronosnap.Utils.CalendarUtils;
 import com.example.chronosnap.Utils.ChartUtils;
 import com.example.chronosnap.databinding.FragmentStatisticsBinding;
 import com.github.mikephil.charting.data.PieEntry;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.temporal.ChronoField;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class StatisticsFragment extends Fragment {
     FragmentStatisticsBinding binding;
@@ -48,23 +43,23 @@ public class StatisticsFragment extends Fragment {
 
     }
 
-    private Map<Category, Integer> getCategoriesDurations(String startDate, String finishDate) {
-        // TODO получение данных из репозитория / use case
+    private Map<Map.Entry<Integer, String>, Integer> getCategoriesDurations(String startDate, String finishDate) {
+        // TODO: получение данных из репозитория / use case
         return new HashMap<>();
     }
 
-    private ArrayList<PieEntry> getPieEntries(Map<Category, Integer> categoryDurations) {
+    private ArrayList<PieEntry> getPieEntries(Map<Map.Entry<Integer, String>, Integer> categoryDurations) {
         ArrayList<PieEntry> pieEntries = new ArrayList<>();
-        for (Map.Entry<Category, Integer> entry : categoryDurations.entrySet()) {
-            pieEntries.add(new PieEntry(entry.getValue(), entry.getKey().getName()));
+        for (Map.Entry<Map.Entry<Integer, String>, Integer> entry : categoryDurations.entrySet()) {
+            pieEntries.add(new PieEntry(entry.getValue(), entry.getKey().getValue()));
         }
         return pieEntries;
     }
 
-    private ArrayList<Integer> getPieEntriesColors(Map<Category, Integer> categoryDurations) {
+    private ArrayList<Integer> getPieEntriesColors(Map<Map.Entry<Integer, String>, Integer> categoryDurations) {
         ArrayList<Integer> colors = new ArrayList<>();
-        for (Map.Entry<Category, Integer> entry : categoryDurations.entrySet()) {
-            colors.add(entry.getKey().getColorIndex());
+        for (Map.Entry<Map.Entry<Integer, String>, Integer> entry : categoryDurations.entrySet()) {
+            colors.add(entry.getKey().getKey());
         }
         return colors;
     }

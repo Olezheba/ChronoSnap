@@ -3,6 +3,12 @@ package com.example.chronosnap.Domain.Entities;
 import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
+
+import com.example.chronosnap.Data.PersistentStorage.Converters;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Entity(tableName = "user")
 public class User {
@@ -12,6 +18,8 @@ public class User {
     private String email;
     private String password;
     private String username;
+    @TypeConverters(Converters.class)
+    private Map<String, Integer> categories;
 
     @Embedded
     private NotificationParameters settings;
@@ -21,6 +29,7 @@ public class User {
         this.email = email;
         this.password = password;
         settings = new NotificationParameters();
+        categories = new HashMap<>();
     }
 
     public String getId() {
@@ -61,5 +70,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+
+    public Map<String, Integer> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Map<String, Integer> categories) {
+        this.categories = categories;
     }
 }

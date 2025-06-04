@@ -3,20 +3,12 @@ package com.example.chronosnap.Data.Repository;
 import androidx.lifecycle.LiveData;
 
 import com.example.chronosnap.Domain.Entities.ActivityEntry;
-import com.example.chronosnap.Domain.Entities.Category;
 import com.example.chronosnap.Domain.Entities.Task;
 
 import java.util.List;
 import java.util.Map;
 
 public interface AppRepository {
-
-    //Categories
-    public LiveData<List<Category>> getAllCategories(String userId);
-    public LiveData<Category> getCategoryById(String id);
-    public void addCategory(Category category);
-    public void deleteCategory(Category category);
-    public void editCategory(Category category);
 
     //Tasks
     public LiveData<List<Task>> getAllTasks(String userId);

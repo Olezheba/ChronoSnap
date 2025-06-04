@@ -41,7 +41,10 @@ dependencies {
     implementation libs.navigation.fragment
     implementation libs.navigation.ui
     testImplementation libs.junit
+    implementation libs.databinder
     implementation libs.androidx.room.runtime
+    //noinspection UseTomlInstead
+    implementation 'com.google.code.gson:gson:2.10.1'
 
 //    navigation Component
     implementation libs.navigation.fragment

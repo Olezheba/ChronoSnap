@@ -5,12 +5,12 @@
     android:layout_height="match_parent"
     tools:context=".UI.View.Fragments.ListFragment"
     android:orientation="vertical"
-    android:background="@color/the_lightest_gray">
+    android:background="?attr/backgroundColor">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="?attr/cardBackgroundColor"
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
@@ -139,7 +139,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:background="@color/white"
+                android:background="?attr/cardBackgroundColor"
                 android:layout_marginBottom="2dp">
                 <TextView
                     android:id="@+id/section_name_1"
@@ -189,7 +189,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:background="@color/white"
+                android:background="?attr/cardBackgroundColor"
                 android:layout_marginBottom="2dp"
                 android:layout_marginTop="5dp">
                 <TextView
@@ -240,7 +240,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:background="@color/white"
+                android:background="?attr/cardBackgroundColor"
                 android:layout_marginBottom="2dp"
                 android:layout_marginTop="5dp">
                 <TextView
@@ -291,7 +291,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:background="@color/white"
+                android:background="?attr/cardBackgroundColor"
                 android:layout_marginBottom="2dp"
                 android:layout_marginTop="5dp">
                 <TextView

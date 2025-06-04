@@ -1,4 +1,4 @@
 package com.example.chronosnap.Data.Repository;
 
-public class LocalRepo {
+public class StopwatchRepository {
 }

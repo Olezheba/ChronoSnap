@@ -1,15 +1,21 @@
 package com.example.chronosnap.UI.View.Activities;
 
 import android.os.Bundle;
+import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.chronosnap.R;
+import com.example.chronosnap.UI.ViewModel.StopwatchVM;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
+
+    StopwatchVM stopwatchVM;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +29,29 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = navHostFragment.getNavController();
 
         NavigationUI.setupWithNavController(bottomNav, navController);
+
+        stopwatchVM = new ViewModelProvider(this).get(StopwatchVM.class);
+        stopwatchVM.isRunning().observe(this, isRunning -> {
+            if (isRunning != null) {
+                if (isRunning) {
+                    if (bottomNav.getVisibility()== BottomNavigationView.VISIBLE){
+                        bottomNav.animate()
+                                .alpha(0f)
+                                .setDuration(400)
+                                .withEndAction(() -> bottomNav.setVisibility(View.INVISIBLE))
+                                .start();
+                    }
+                } else {
+                    if (bottomNav.getVisibility()== BottomNavigationView.INVISIBLE) {
+                        bottomNav.animate()
+                                .alpha(1f)
+                                .setDuration(400)
+                                .withEndAction(() -> bottomNav.setVisibility(View.VISIBLE))
+                                .start();
+                    }
+                }
+            }
+        });
     }
 
     @Override

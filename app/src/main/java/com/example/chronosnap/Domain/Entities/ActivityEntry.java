@@ -9,8 +9,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.Duration;
+import java.util.Objects;
 
 @Entity(tableName = "activity_entries")
 public class ActivityEntry {
@@ -20,30 +19,20 @@ public class ActivityEntry {
 
     @ColumnInfo(name = "user_id")
     private String userId;
-    private String name;
     private int categoryIndex;
     private String date;
     private long startTime;
     private long duration;
+    private int priority;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public ActivityEntry (String userId, String name, byte categoryIndex, long startTime){
+    public ActivityEntry (String userId, Integer categoryIndex, long startTime, long duration, int priority){
         this.userId = userId;
-        this.name = name;
-        this.categoryIndex = categoryIndex;
-        date = LocalDate.now().toString();
-        this.startTime = startTime;
-        duration = System.currentTimeMillis()-startTime;
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public ActivityEntry (String userId, String name, byte categoryIndex, long startTime, long duration){
-        this.userId = userId;
-        this.name = name;
         this.categoryIndex = categoryIndex;
         date = LocalDate.now().toString();
         this.startTime = startTime;
         this.duration = duration;
+        this.priority = priority;
     }
 
     public String getUserId() {
@@ -52,14 +41,6 @@ public class ActivityEntry {
 
     public void setUserId(String userId) {
         this.userId = userId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getId() {
@@ -93,4 +74,25 @@ public class ActivityEntry {
     public String getDate() { return date; }
 
     public void setDate(String date) { this.date = date; }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ActivityEntry that = (ActivityEntry) o;
+        return categoryIndex == that.categoryIndex && startTime == that.startTime && duration == that.duration && Objects.equals(id, that.id) && Objects.equals(userId, that.userId) && Objects.equals(date, that.date);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, userId, categoryIndex, date, startTime, duration);
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
+    }
 }
