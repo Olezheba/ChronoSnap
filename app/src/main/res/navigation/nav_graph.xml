@@ -8,32 +8,48 @@
     <fragment
         android:id="@+id/fragment_stopwatch"
         android:label="Stopwatch"
-        android:name="com.example.chronosnap.UI.View.Fragments.StopwatchFragment"
+        android:name="com.example.chronosnap.ui.view.fragments.StopwatchFragment"
         tools:layout="@layout/fragment_stopwatch"/>
 
     <fragment
         android:id="@+id/fragment_statistics"
         android:label="Statistics"
-        android:name="com.example.chronosnap.UI.View.Fragments.StatisticsFragment"
+        android:name="com.example.chronosnap.ui.view.fragments.StatisticsFragment"
         tools:layout="@layout/fragment_statistics"/>
 
     <fragment
         android:id="@+id/fragment_list"
         android:label="List"
-        android:name="com.example.chronosnap.UI.View.Fragments.ListFragment"
+        android:name="com.example.chronosnap.ui.view.fragments.ListFragment"
         tools:layout="@layout/fragment_list"/>
 
     <fragment
         android:id="@+id/fragment_calendar"
         android:label="Calendar"
-        android:name="com.example.chronosnap.UI.View.Fragments.TimelineFragment"
+        android:name="com.example.chronosnap.ui.view.fragments.TimelineFragment"
         tools:layout="@layout/fragment_timeline"/>
 
     <fragment
         android:id="@+id/fragment_settings"
         android:label="Settings"
-        android:name="com.example.chronosnap.UI.View.Fragments.SettingsFragment"
-        tools:layout="@layout/fragment_settings"/>
+        android:name="com.example.chronosnap.ui.view.fragments.SettingsFragment"
+        tools:layout="@layout/fragment_settings">
+
+    <action
+        android:id="@+id/action_to_edit_info"
+        app:destination="@id/fragment_edit_info" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_edit_info"
+        android:label="Edit Info"
+        android:name="com.example.chronosnap.ui.view.fragments.EditInfoFragment"
+        tools:layout="@layout/fragment_edit_info">
+
+        <action
+            android:id="@+id/action_to_settings"
+            app:destination="@id/fragment_settings" />
+    </fragment>
 
 
 </navigation>

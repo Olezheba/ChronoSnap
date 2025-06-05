@@ -18,7 +18,7 @@
         android:theme="@style/Theme.ChronoSnap"
         tools:targetApi="31">
         <activity
-            android:name=".UI.View.Activities.AuthActivity"
+            android:name=".ui.view.activities.AuthActivity"
             android:exported="true"
             android:theme="@style/Theme.ChronoSnap">
             <intent-filter>
@@ -27,7 +27,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".UI.View.Activities.MainActivity"
+            android:name=".ui.view.activities.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.ChronoSnap">
         </activity>

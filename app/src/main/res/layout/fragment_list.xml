@@ -3,126 +3,132 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.View.Fragments.ListFragment"
-    android:orientation="vertical"
-    android:background="?attr/backgroundColor">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.view.fragments.ListFragment"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/cardBackgroundColor"
-        android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="20dp"
-            android:layout_marginTop="20dp">
-
-            <ImageButton
-                android:id="@+id/back"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/arrow_back"
-                android:background="@null"
-                android:textStyle="bold"
-                android:textSize="20sp"/>
-
-            <TextView
-                android:id="@+id/month_year_text"
-                android:layout_width="0dp"
-                android:layout_weight="2"
-                android:layout_height="wrap_content"
-                android:text="Feb 2021"
-                android:textSize="20sp"
-                android:textAlignment="center"/>
-
-            <ImageButton
-                android:id="@+id/forward"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/arrow_forward"
-                android:background="@null"
-                android:textStyle="bold"
-                android:textSize="20sp"/>
-        </LinearLayout>
+        app:cardCornerRadius="0dp"
+        app:strokeWidth="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="ПН"
-                android:textColor="@color/dark_gray"
-                android:textAlignment="center"
-                android:textSize="16sp"/>
+                android:orientation="horizontal"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="ВТ"
-                android:textColor="@color/dark_gray"
-                android:textAlignment="center"
-                android:textSize="16sp"/>
+                <ImageButton
+                    android:id="@+id/back"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@drawable/arrow_back"
+                    android:background="@null"
+                    android:textStyle="bold"
+                    android:textSize="20sp"/>
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="СР"
-                android:textColor="@color/dark_gray"
-                android:textAlignment="center"
-                android:textSize="16sp"/>
+                <TextView
+                    android:id="@+id/month_year_text"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:text="Feb 2021"
+                    android:textSize="20sp"
+                    android:textAlignment="center"/>
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="ЧТ"
-                android:textColor="@color/dark_gray"
-                android:textAlignment="center"
-                android:textSize="16sp"/>
+                <ImageButton
+                    android:id="@+id/forward"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@drawable/arrow_forward"
+                    android:background="@null"
+                    android:textStyle="bold"
+                    android:textSize="20sp"/>
+            </LinearLayout>
 
-            <TextView
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="ПТ"
-                android:textColor="@color/dark_gray"
-                android:textAlignment="center"
-                android:textSize="16sp"/>
+                android:orientation="horizontal"
+                android:paddingBottom="10dp">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="СБ"
-                android:textColor="@color/dark_gray"
-                android:textAlignment="center"
-                android:textSize="16sp"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="ПН"
+                    android:textColor="@color/dark_gray"
+                    android:textAlignment="center"
+                    android:textSize="16sp"/>
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="ВС"
-                android:textColor="@color/dark_gray"
-                android:textAlignment="center"
-                android:textSize="16sp"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="ВТ"
+                    android:textColor="@color/dark_gray"
+                    android:textAlignment="center"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="СР"
+                    android:textColor="@color/dark_gray"
+                    android:textAlignment="center"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="ЧТ"
+                    android:textColor="@color/dark_gray"
+                    android:textAlignment="center"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="ПТ"
+                    android:textColor="@color/dark_gray"
+                    android:textAlignment="center"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="СБ"
+                    android:textColor="@color/dark_gray"
+                    android:textAlignment="center"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="ВС"
+                    android:textColor="@color/dark_gray"
+                    android:textAlignment="center"
+                    android:textSize="16sp"/>
+            </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/calendar_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
         </LinearLayout>
-    </LinearLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/calendar_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+    </com.google.android.material.card.MaterialCardView>
 
     <ScrollView
         android:layout_marginTop="10dp"
@@ -135,11 +141,15 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="0dp"
+                app:strokeWidth="0dp">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:background="?attr/cardBackgroundColor"
                 android:layout_marginBottom="2dp">
                 <TextView
                     android:id="@+id/section_name_1"
@@ -156,12 +166,12 @@
                     android:background="@android:color/transparent"
                     android:src="@drawable/arrow_right" />
             </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/task_list_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:listitem="@layout/item_task"
-                android:background="@color/white"
                 android:visibility="gone"/>
             <LinearLayout
                 android:id="@+id/add_view_1"
@@ -185,11 +195,16 @@
                     android:layout_gravity="center"/>
             </LinearLayout>
 
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="0dp"
+                app:strokeWidth="0dp">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:background="?attr/cardBackgroundColor"
                 android:layout_marginBottom="2dp"
                 android:layout_marginTop="5dp">
                 <TextView
@@ -207,12 +222,12 @@
                     android:background="@android:color/transparent"
                     android:src="@drawable/arrow_right" />
             </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/task_list_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:listitem="@layout/item_task"
-                android:background="@color/white"
                 android:visibility="gone"/>
             <LinearLayout
                 android:id="@+id/add_view_2"
@@ -236,11 +251,15 @@
                     android:layout_gravity="center"/>
             </LinearLayout>
 
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="0dp"
+                app:strokeWidth="0dp">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:background="?attr/cardBackgroundColor"
                 android:layout_marginBottom="2dp"
                 android:layout_marginTop="5dp">
                 <TextView
@@ -258,12 +277,12 @@
                     android:background="@android:color/transparent"
                     android:src="@drawable/arrow_right" />
             </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/task_list_3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:listitem="@layout/item_task"
-                android:background="@color/white"
                 android:visibility="gone"/>
             <LinearLayout
                 android:id="@+id/add_view_3"
@@ -287,11 +306,15 @@
                     android:layout_gravity="center"/>
             </LinearLayout>
 
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="0dp"
+                app:strokeWidth="0dp">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:background="?attr/cardBackgroundColor"
                 android:layout_marginBottom="2dp"
                 android:layout_marginTop="5dp">
                 <TextView
@@ -309,12 +332,12 @@
                     android:background="@android:color/transparent"
                     android:src="@drawable/arrow_right" />
             </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/task_list_4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:listitem="@layout/item_task"
-                android:background="@color/white"
                 android:visibility="gone"/>
             <LinearLayout
                 android:id="@+id/add_view_4"

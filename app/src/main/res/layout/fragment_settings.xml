@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
-        <variable name="user" type="com.example.chronosnap.Domain.Entities.User"/>
+        <variable name="viewModel" type="com.example.chronosnap.ui.viewmodel.SettingsVM"/>
     </data>
     <ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        tools:context=".UI.View.Fragments.SettingsFragment"
-        android:background="?attr/backgroundColor">
+        tools:context=".ui.view.fragments.SettingsFragment">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -19,8 +17,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="?attr/cardBackgroundColor">
+                android:layout_height="wrap_content">
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="wrap_content"
@@ -45,13 +42,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="24sp"
-                        android:text="Username"/>
+                        android:text="@{viewModel.user.username}"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
-                        android:text="username@mail.com"/>
+                        android:text="@{viewModel.user.email}"/>
                 </LinearLayout>
 
 
@@ -78,7 +75,6 @@
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:backgroundTint="?attr/cardBackgroundColor"
                 app:strokeWidth="0dp">
 
                 <LinearLayout
@@ -96,7 +92,19 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{}"
+                        android:text='@{String.format("%02d", viewModel.user.settings.startHour)}'
+                        android:textColor="@color/blue"
+                        android:textSize="16sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=":"
+                        android:textColor="@color/blue"
+                        android:textSize="16sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text='@{String.format("%02d", viewModel.user.settings.startMinute)}'
                         android:textColor="@color/blue"
                         android:textSize="16sp"
                         android:layout_marginRight="5dp" />
@@ -111,7 +119,19 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="22:00"
+                        android:text='@{String.format("%02d", viewModel.user.settings.finishHour)}'
+                        android:textColor="@color/blue"
+                        android:textSize="16sp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=":"
+                        android:textColor="@color/blue"
+                        android:textSize="16sp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text='@{String.format("%02d", viewModel.user.settings.finishMinute)}'
                         android:textColor="@color/blue"
                         android:textSize="16sp"
                         android:layout_marginRight="5dp" />
@@ -126,7 +146,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="30"
+                        android:text="@{String.valueOf(viewModel.user.settings.interval)}"
                         android:textColor="@color/blue"
                         android:textSize="16sp"
                         android:layout_marginRight="5dp" />
@@ -139,9 +159,11 @@
                         android:layout_marginRight="5dp"
                         android:layout_weight="1"/>
 
-                    <Switch
+                    <com.google.android.material.switchmaterial.SwitchMaterial
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:checked="@{viewModel.user.settings.enabled}"
+                        app:thumbTint="@color/the_lightest_gray"/>
 
                 </LinearLayout>
 
@@ -164,7 +186,6 @@
                 android:layout_marginBottom="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:backgroundTint="?attr/cardBackgroundColor"
                 app:strokeWidth="0dp">
 
                 <LinearLayout
@@ -224,7 +245,6 @@
                 android:layout_marginBottom="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:backgroundTint="?attr/cardBackgroundColor"
                 app:strokeWidth="0dp">
                 <LinearLayout
                     android:layout_width="match_parent"
