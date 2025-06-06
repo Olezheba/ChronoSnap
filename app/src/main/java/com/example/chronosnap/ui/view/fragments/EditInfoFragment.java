@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.chronosnap.R;
 import com.example.chronosnap.databinding.FragmentEditInfoBinding;
+import com.example.chronosnap.domain.entities.NotificationParameters;
 import com.example.chronosnap.domain.entities.User;
 import com.example.chronosnap.ui.viewmodel.SettingsVM;
 import com.example.chronosnap.utils.ValidCheckers;
@@ -50,15 +51,16 @@ public class EditInfoFragment extends Fragment {
         if (user != null) {
             binding.usernameEt.setText(user.getUsername());
             binding.emailEt.setText(user.getEmail());
-            binding.passwordEt.setText(user.getPassword());
 
-            String startTime = String.format(Locale.getDefault(), "%02d:%02d", user.getSettings().getStartHour(), user.getSettings().getStartMinute());
-            String finishTime = String.format(Locale.getDefault(), "%02d:%02d", user.getSettings().getFinishHour(), user.getSettings().getFinishMinute());
+            String startTime = String.format(Locale.getDefault(), "%02d:%02d", vm.getSettings().getValue().getStartHour(),
+                    vm.getSettings().getValue().getStartMinute());
+            String finishTime = String.format(Locale.getDefault(), "%02d:%02d", vm.getSettings().getValue().getFinishHour(),
+                    vm.getSettings().getValue().getFinishMinute());
 
             binding.staartTimeEt.setText(startTime);
             binding.finishTimeEt.setText(finishTime);
 
-            binding.intervalEt.setText(String.valueOf(user.getSettings().getInterval()));
+            binding.intervalEt.setText(String.valueOf(vm.getSettings().getValue().getInterval()));
         }
 
 
@@ -108,33 +110,20 @@ public class EditInfoFragment extends Fragment {
                 }
             }
 
-            if (vc.isValidStartAndFinishTime(startTime, finishTime)) {
-                try {
-                    String[] parts1 = startTime.split(":");
-                    String[] parts2 = finishTime.split(":");
-
-                    h1 = Integer.parseInt(parts1[0]);
-                    m1 = Integer.parseInt(parts1[1]);
-                    h2 = Integer.parseInt(parts2[0]);
-                    m2 = Integer.parseInt(parts2[1]);
-                } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-                    Toast.makeText(getContext(), "Ошибка в формате времени", Toast.LENGTH_SHORT).show();
-                    correct = false;
-                }
-            } else {
+            if (!vc.isValidStartAndFinishTime(startTime, finishTime)) {
                 Toast.makeText(getContext(), "Введите корректное время", Toast.LENGTH_SHORT).show();
                 correct = false;
             }
 
             if (correct) {
                 User updateUser = new User(
-                        id, un, email, password,
-                        h1, m1, h2, m2, interval,
-                        vm.getUser().getValue().getSettings().isEnabled(),
-                        vm.getUser().getValue().getCategories()
+                        id, un, email, vm.getUser().getValue().getCategories()
                 );
                 vm.setUser(updateUser);
                 navController.navigate(R.id.action_to_settings);
+                NotificationParameters np = new NotificationParameters(vm.getSettings().getValue().isEnabled(),
+                        h1, m1, h2, m2, interval);
+                vm.updateSettingsPreferences(requireContext(), np);
             }
         });
 
@@ -162,11 +151,11 @@ public class EditInfoFragment extends Fragment {
                 StringBuilder formatted = new StringBuilder();
                 if (str.length()>2){
                     for (int i=0; i< str.length();i++){
-                        if (i==2) formatted.append("3");
+                        if (i==2) formatted.append(":");
                         else formatted.append(str.charAt(i));
                     }
                 }
-
+                editText.setText(formatted);
                 editText.addTextChangedListener(this);
             }
 

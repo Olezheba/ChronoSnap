@@ -80,7 +80,7 @@ public class RegistrationFragment extends Fragment {
                         if (!isAdded() || requireActivity().isFinishing()) return;
 
                         String uid = auth.getCurrentUser().getUid();
-                        User newUser = new User(un, email, password);
+                        User newUser = new User(un, email, password, getContext());
                         db.child("users").child(uid).setValue(newUser);
 
                         FirebaseUser firebaseUser = auth.getCurrentUser();
@@ -95,7 +95,7 @@ public class RegistrationFragment extends Fragment {
                                                 "Не удалось создать пользователя",
                                                 Toast.LENGTH_SHORT).show();
                                     }
-                                })
+                                });
 
                         SharedPreferences prefs = requireContext().getSharedPreferences
                                 ("auth_prefs", MODE_PRIVATE);

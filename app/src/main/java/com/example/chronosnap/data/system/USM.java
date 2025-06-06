@@ -1,17 +1,20 @@
 package com.example.chronosnap.data.system;
 
 import android.app.usage.UsageEvents;
+import android.app.usage.UsageStats;
 import android.app.usage.UsageStatsManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
 import com.example.chronosnap.data.repository.AppRepository;
 import com.example.chronosnap.domain.entities.ActivityEntry;
+import com.example.chronosnap.domain.usecases.AddActivityEntryUseCase;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.HashMap;
@@ -20,14 +23,14 @@ import java.util.Map;
 public class USM {
     private Context context;
     private UsageStatsManager usm;
-    private final AppRepository repo;
+    private AddActivityEntryUseCase addActivityEntryUseCase;
 
-    public USM(Context context, AppRepository repository){
-        repo = repository;
+    public USM(Context context){
         this.context = context;
     }
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void writeDown() {
+    public void writeDown(Context context) {
+        usm = (UsageStatsManager) context.getSystemService(Context.USAGE_STATS_SERVICE);
         long lastSync = getLastSyncTime();
         long now = System.currentTimeMillis();
 
@@ -45,13 +48,12 @@ public class USM {
 
             if (event.getEventType() == UsageEvents.Event.MOVE_TO_BACKGROUND) {
                 String pkg = event.getPackageName();
-                String appName = getAppName(context, pkg);
                 if (foregroundTimes.containsKey(pkg)) {
                     long start = foregroundTimes.get(pkg);
                     long end = event.getTimeStamp();
                     ActivityEntry entry = new ActivityEntry(FirebaseAuth.getInstance().getUid(),
                             0, start, end, 2);
-                    repo.insertActivityEntry(entry);
+                    addActivityEntryUseCase.execute(entry);
 
                     foregroundTimes.remove(pkg);
                 }
@@ -71,7 +73,7 @@ public class USM {
         prefs.edit().putLong("last_usage_sync", time).apply();
     }
 
-    public static String getAppName(Context context, String packageName) {
+    public static String getAppCategory(Context context, String packageName) {
         PackageManager pm = context.getPackageManager();
         try {
             ApplicationInfo info = pm.getApplicationInfo(packageName, 0);

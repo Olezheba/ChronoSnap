@@ -49,11 +49,10 @@ public class ListFragment extends Fragment implements CalendarAdapter.OnItemList
         }
         setWeekView();
 
-
-
-
         return binding.getRoot();
     }
+
+
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void setWeekView() {
@@ -120,11 +119,15 @@ public class ListFragment extends Fragment implements CalendarAdapter.OnItemList
         if (s.isExpanded) {
             taskList.setVisibility(View.GONE);
             addView.setVisibility(View.GONE);
+            btn.setEnabled(false);
             btn.animate().rotationBy(-90).setDuration(200).start();
+            btn.setEnabled(true);
         } else {
             taskList.setVisibility(View.VISIBLE);
             addView.setVisibility(View.VISIBLE);
+            btn.setEnabled(false);
             btn.animate().rotationBy(90).setDuration(200).start();
+            btn.setEnabled(true);
         }
 
         s.setExpansion(!s.isExpanded);

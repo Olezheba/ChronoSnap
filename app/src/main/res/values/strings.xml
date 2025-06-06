@@ -43,7 +43,6 @@
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="login" translatable="false">Войти</string>
     <string name="password">Пароль</string>
@@ -87,7 +86,20 @@
     <string name="saving_checked_text">Отобразить экранное время за период записи</string>
     <string name="save">Сохранить</string>
     <string name="delete">Удалить</string>
+    <string name="not_more_than">(не более 16)</string>
     <string name="start_time">Начало отправки уведомлений</string>
     <string name="end_time">Конец отправки уведомлений</string>
     <string name="interval">Интервал отправки уведомлений (мин)</string>
+    <string name="undefined">Другое</string>
+    <string name="game">Игры</string>
+    <string name="audio">Музыка</string>
+    <string name="video">Видео (приложения)</string>
+    <string name="image">Фото и графика (приложения)</string>
+    <string name="social">Соцсети</string>
+    <string name="news">Новости</string>
+    <string name="maps">Карты, навигация (приложения)</string>
+    <string name="productivity">Работа, планирование</string>
+    <string name="category_hint">Введите название категории</string>
+    <string name="choose_color">Выберите цвет</string>
+    <string name="task_hint">Введите задачу</string>
 </resources>

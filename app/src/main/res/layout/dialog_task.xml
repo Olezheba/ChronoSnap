@@ -23,19 +23,27 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-            </androidx.cardview.widget.CardView>
-
-            <TextView
-                android:layout_width="wrap_content"
+            <com.google.android.material.card.MaterialCardView
                 android:layout_height="wrap_content"
-                android:text="@string/saving_up"
-                android:layout_gravity="center"
-                android:textSize="20sp"
-                android:layout_marginTop="15dp"/>
+                android:layout_width="344dp"
+                app:cardCornerRadius="8dp"
+                app:strokeColor="@color/dark_gray"
+                app:strokeWidth="1dp"
+                android:layout_marginTop="42dp"
+                android:layout_gravity="center">
+
+                <EditText
+                    android:id="@+id/category_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:hint="@string/task_hint"
+                    android:textColorHint="@color/dark_gray"
+                    android:textSize="16sp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@android:color/transparent"/>
+
+            </com.google.android.material.card.MaterialCardView>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -43,6 +51,7 @@
                 android:orientation="vertical"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginBottom="15dp">
                 <TextView
                     android:layout_width="wrap_content"
@@ -60,30 +69,6 @@
                         android:layout_height="wrap_content"
                         android:padding="10dp"/>
                 </com.google.android.material.card.MaterialCardView>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginBottom="30dp"
-                android:layout_marginTop="10dp">
-
-                <com.google.android.material.checkbox.MaterialCheckBox
-                    android:id="@+id/show_screentime_checkbox"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_margin="10dp"
-                    android:checked="true"
-                    app:buttonTint="@color/blue"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/saving_checked_text"
-                    android:textSize="16sp"
-                    android:layout_margin="7dp"/>
             </LinearLayout>
 
             <com.google.android.material.button.MaterialButton
@@ -109,7 +94,7 @@
                 android:textColor="@color/red"
                 app:strokeWidth="1dp"
                 app:strokeColor="@color/red"
-                android:layout_marginBottom="15dp"/>
+                android:layout_marginBottom="30dp"/>
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

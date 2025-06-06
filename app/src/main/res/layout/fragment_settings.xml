@@ -92,7 +92,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text='@{String.format("%02d", viewModel.user.settings.startHour)}'
+                        android:text='@{String.format("%02d", viewModel.settings.startHour)}'
                         android:textColor="@color/blue"
                         android:textSize="16sp" />
                     <TextView
@@ -104,7 +104,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text='@{String.format("%02d", viewModel.user.settings.startMinute)}'
+                        android:text='@{String.format("%02d", viewModel.settings.startMinute)}'
                         android:textColor="@color/blue"
                         android:textSize="16sp"
                         android:layout_marginRight="5dp" />
@@ -119,7 +119,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text='@{String.format("%02d", viewModel.user.settings.finishHour)}'
+                        android:text='@{String.format("%02d", viewModel.settings.finishHour)}'
                         android:textColor="@color/blue"
                         android:textSize="16sp"/>
                     <TextView
@@ -131,7 +131,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text='@{String.format("%02d", viewModel.user.settings.finishMinute)}'
+                        android:text='@{String.format("%02d", viewModel.settings.finishMinute)}'
                         android:textColor="@color/blue"
                         android:textSize="16sp"
                         android:layout_marginRight="5dp" />
@@ -146,7 +146,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{String.valueOf(viewModel.user.settings.interval)}"
+                        android:text="@{String.valueOf(viewModel.settings.interval)}"
                         android:textColor="@color/blue"
                         android:textSize="16sp"
                         android:layout_marginRight="5dp" />
@@ -160,9 +160,10 @@
                         android:layout_weight="1"/>
 
                     <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/notif_switch"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:checked="@{viewModel.user.settings.enabled}"
+                        android:checked="@{viewModel.settings.enabled}"
                         app:thumbTint="@color/the_lightest_gray"/>
 
                 </LinearLayout>
@@ -170,15 +171,27 @@
 
             </com.google.android.material.card.MaterialCardView>
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/categories"
-                android:textSize="18sp"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="10dp"/>
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/categories"
+                    android:textSize="18sp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/not_more_than"
+                    android:textColor="@color/dark_gray"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="5dp"/>
+            </LinearLayout>
+
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
@@ -194,6 +207,7 @@
                     android:orientation="vertical">
 
                     <ListView
+                        android:id="@+id/category_list"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         tools:listitem="@layout/item_category"/>
@@ -204,11 +218,11 @@
                         app:dividerColor="@android:color/darker_gray"/>
 
                     <LinearLayout
+                        android:id="@+id/add_category_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="15dp">
                         <ImageButton
-                            android:id="@+id/edit_category_button"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"

@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.chronosnap.domain.entities.ActivityEntry;
+import com.example.chronosnap.domain.usecases.AddActivityEntryUseCase;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
@@ -22,9 +23,10 @@ public class StopwatchVM extends ViewModel {
 
     public MutableLiveData<Boolean> isRunning() { return running; }
     public void setRunning(boolean r) { running.setValue(r); }
-
     public void setStart(long s) { start = s; }
     public long getStart() { return start; }
+
+    private AddActivityEntryUseCase addActivityEntryUseCase;
 
     public List<Map.Entry<String, Integer>> getAllCategoriesList() {
         Map<String, Integer> categories = new TreeMap<>();
@@ -53,6 +55,6 @@ public class StopwatchVM extends ViewModel {
     public void saveActivityEntry(String selectedCategory, byte priority, long durationMillis) {
         Map<String, Integer> map = getAllCategories();
         ActivityEntry ae = new ActivityEntry(uid, map.get(selectedCategory), start, durationMillis, priority);
-        // TODO сохранить ActivityEntry / use case
+        addActivityEntryUseCase.execute(ae);
     }
 }

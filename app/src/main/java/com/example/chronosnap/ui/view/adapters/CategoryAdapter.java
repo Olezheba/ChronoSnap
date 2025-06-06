@@ -5,10 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.chronosnap.R;
 
@@ -33,23 +35,26 @@ public class CategoryAdapter extends ArrayAdapter<Map.Entry<String, Integer>> {
 
         final Map.Entry<String, Integer> category = getItem(position);
 
-        if (isSpinner){
+        if (isSpinner) {
             if (convertView == null) {
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_spinner_category, null);
             }
-        }else{
+        } else {
             if (convertView == null) {
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_category, null);
             }
         }
 
-        TextView tv =  convertView.findViewById(R.id.category_name);
+        TextView tv = convertView.findViewById(R.id.category_name);
         assert category != null;
         tv.setText(category.getKey());
         (convertView.findViewById(R.id.category_color)).setBackgroundColor(category.getValue());
 
-        if (!isSpinner){
+        if (!isSpinner) {
             ImageButton edit = convertView.findViewById(R.id.edit_category_btn);
+            if (position<10){
+                edit.setVisibility(View.INVISIBLE);
+            }
             edit.setOnClickListener(v -> {
                 //TODO: изменение/удаление категории / use case
             });
@@ -57,4 +62,5 @@ public class CategoryAdapter extends ArrayAdapter<Map.Entry<String, Integer>> {
 
         return convertView;
     }
+
 }
