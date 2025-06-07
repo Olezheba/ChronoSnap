@@ -57,13 +57,13 @@ public class ListFragment extends Fragment implements CalendarAdapter.OnItemList
         if (CalendarUtils.selectedDate == null) {
             CalendarUtils.selectedDate = LocalDate.now();
         }
-        setWeekView(selectedDate);
+        setWeekView();
 
         return binding.getRoot();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private void setWeekView(LocalDate selectedDate) {
+    private void setWeekView() {
         if (binding.monthYearText == null || binding.calendarView == null || CalendarUtils.selectedDate == null) {
             return;
         }
@@ -84,10 +84,10 @@ public class ListFragment extends Fragment implements CalendarAdapter.OnItemList
         binding.sectionBtn2.setOnClickListener(v -> { onSectionClick(binding.sectionBtn2, sec2); });
         binding.sectionBtn3.setOnClickListener(v -> { onSectionClick(binding.sectionBtn3, sec3); });
         binding.sectionBtn4.setOnClickListener(v -> { onSectionClick(binding.sectionBtn4, sec4); });
-        binding.addView1.setOnClickListener(v -> {addTask(1, selectedDate);});
-        binding.addView2.setOnClickListener(v -> {addTask(2, selectedDate);});
-        binding.addView3.setOnClickListener(v -> {addTask(3, selectedDate);});
-        binding.addView4.setOnClickListener(v -> {addTask(4, selectedDate);});
+        binding.addView1.setOnClickListener(v -> {addTask(1, CalendarUtils.selectedDate);});
+        binding.addView2.setOnClickListener(v -> {addTask(2, CalendarUtils.selectedDate);});
+        binding.addView3.setOnClickListener(v -> {addTask(3, CalendarUtils.selectedDate);});
+        binding.addView4.setOnClickListener(v -> {addTask(4, CalendarUtils.selectedDate);});
     }
 
     @Override
@@ -150,8 +150,11 @@ public class ListFragment extends Fragment implements CalendarAdapter.OnItemList
                 vm.addTask(FirebaseAuth.getInstance().getCurrentUser().getUid(),
                         name, color, date, sectionIndex);
             }
+
             @Override
-            public void onDelete() {}
+            public void Delete() {
+
+            }
         });
         dialog.show(getChildFragmentManager(), "SaveDialog");
     }
