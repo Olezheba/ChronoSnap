@@ -1,10 +1,9 @@
 package com.example.chronosnap.ui.viewmodel;
 
-import static androidx.core.content.ContextCompat.startActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.widget.Toast;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -15,7 +14,6 @@ import com.example.chronosnap.domain.entities.NotificationParameters;
 import com.example.chronosnap.domain.entities.User;
 import com.example.chronosnap.domain.usecases.UpdateUserUseCase;
 import com.example.chronosnap.ui.view.activities.AuthActivity;
-import com.example.chronosnap.ui.view.activities.MainActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -38,23 +36,20 @@ public class SettingsVM extends ViewModel {
         return user;
     }
 
-    public void setUser(User updatedUser) {
+    public void setUser(User updatedUser, Context context) {
         user.setValue(updatedUser);
-        updateUser();
+        updateUser(context);
     }
 
-    public boolean updateUser() {
-        UpdateUserUseCase updateUserUseCase = new UpdateUserUseCase(userRepository);
+    public void updateUser(Context context) {
         User updatedUser = user.getValue();
-        if (updatedUser == null) return false;
+        if (updatedUser == null) return;
 
-        AtomicBoolean b = new AtomicBoolean(false);
-        updateUserUseCase.execute(updatedUser, task -> {
+        UpdateUserUseCase.execute(updatedUser, task -> {
             if (task.isSuccessful()) {
-                b.set(true);
+                Toast.makeText(context, "Настройки обновлены", Toast.LENGTH_SHORT).show();
             }
         });
-        return b.get();
     }
 
     public void loadUser() {

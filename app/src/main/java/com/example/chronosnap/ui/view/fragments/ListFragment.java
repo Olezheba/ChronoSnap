@@ -1,6 +1,7 @@
 package com.example.chronosnap.ui.view.fragments;
 
 import static com.example.chronosnap.utils.CalendarUtils.daysInWeekArray;
+import static com.example.chronosnap.utils.CalendarUtils.selectedDate;
 
 import android.annotation.SuppressLint;
 import android.os.Build;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,8 +20,12 @@ import android.widget.ImageButton;
 
 import com.example.chronosnap.R;
 import com.example.chronosnap.ui.view.adapters.CalendarAdapter;
+import com.example.chronosnap.ui.view.dialogs.SaveRecordDialogFragment;
+import com.example.chronosnap.ui.view.dialogs.TaskDialog;
+import com.example.chronosnap.ui.viewmodel.TaskVM;
 import com.example.chronosnap.utils.CalendarUtils;
 import com.example.chronosnap.databinding.FragmentListBinding;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -27,35 +33,37 @@ import java.util.ArrayList;
 
 public class ListFragment extends Fragment implements CalendarAdapter.OnItemListener {
     private FragmentListBinding binding;
+    private TaskVM vm;
 
     @SuppressLint("MissingInflatedId")
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentListBinding.inflate(inflater, container, false);;
+        binding = FragmentListBinding.inflate(inflater, container, false);
+        vm = new ViewModelProvider(requireActivity()).get(TaskVM.class);
 
         binding.back.setOnClickListener(v -> {
             CalendarUtils.selectedDate = CalendarUtils.selectedDate.minusWeeks(1);
             setWeekView();
+            vm.updateLists(selectedDate);
         });
 
         binding.forward.setOnClickListener(v -> {
             CalendarUtils.selectedDate = CalendarUtils.selectedDate.plusWeeks(1);
             setWeekView();
+            vm.updateLists(selectedDate);
         });
 
         if (CalendarUtils.selectedDate == null) {
             CalendarUtils.selectedDate = LocalDate.now();
         }
-        setWeekView();
+        setWeekView(selectedDate);
 
         return binding.getRoot();
     }
 
-
-
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private void setWeekView() {
+    private void setWeekView(LocalDate selectedDate) {
         if (binding.monthYearText == null || binding.calendarView == null || CalendarUtils.selectedDate == null) {
             return;
         }
@@ -76,10 +84,10 @@ public class ListFragment extends Fragment implements CalendarAdapter.OnItemList
         binding.sectionBtn2.setOnClickListener(v -> { onSectionClick(binding.sectionBtn2, sec2); });
         binding.sectionBtn3.setOnClickListener(v -> { onSectionClick(binding.sectionBtn3, sec3); });
         binding.sectionBtn4.setOnClickListener(v -> { onSectionClick(binding.sectionBtn4, sec4); });
-        binding.addView1.setOnClickListener(v -> {addTask((byte)1);});
-        binding.addView2.setOnClickListener(v -> {addTask((byte)2);});
-        binding.addView3.setOnClickListener(v -> {addTask((byte)3);});
-        binding.addView4.setOnClickListener(v -> {addTask((byte)4);});
+        binding.addView1.setOnClickListener(v -> {addTask(1, selectedDate);});
+        binding.addView2.setOnClickListener(v -> {addTask(2, selectedDate);});
+        binding.addView3.setOnClickListener(v -> {addTask(3, selectedDate);});
+        binding.addView4.setOnClickListener(v -> {addTask(4, selectedDate);});
     }
 
     @Override
@@ -87,7 +95,7 @@ public class ListFragment extends Fragment implements CalendarAdapter.OnItemList
         if (date != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             CalendarUtils.selectedDate = date;
             setWeekView();
-
+            vm.updateLists(selectedDate);
         }
     }
 
@@ -133,8 +141,19 @@ public class ListFragment extends Fragment implements CalendarAdapter.OnItemList
         s.setExpansion(!s.isExpanded);
     }
 
-    private void addTask(byte sectionIndex){
-        //TODO всплывающее окно добавления задачи
+    private void addTask(int sectionIndex, LocalDate date){
+        TaskDialog dialog = new TaskDialog();
+        dialog.setSaveListener(new TaskDialog.SaveListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onSave(String name, int color) {
+                vm.addTask(FirebaseAuth.getInstance().getCurrentUser().getUid(),
+                        name, color, date, sectionIndex);
+            }
+            @Override
+            public void onDelete() {}
+        });
+        dialog.show(getChildFragmentManager(), "SaveDialog");
     }
 
     private static class Section{

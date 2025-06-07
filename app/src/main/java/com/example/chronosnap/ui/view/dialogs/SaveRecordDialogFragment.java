@@ -1,5 +1,7 @@
 package com.example.chronosnap.ui.view.dialogs;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +30,8 @@ public class SaveRecordDialogFragment extends DialogFragment {
 
         binding = DialogStopwatchSavingBinding.inflate(inflater, container, false);
         vm = new StopwatchVM();
+
+        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         CategoryAdapter adapter = new CategoryAdapter(requireContext(), vm.getAllCategoriesList(), true);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

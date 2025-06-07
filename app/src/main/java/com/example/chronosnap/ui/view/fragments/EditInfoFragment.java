@@ -119,7 +119,7 @@ public class EditInfoFragment extends Fragment {
                 User updateUser = new User(
                         id, un, email, vm.getUser().getValue().getCategories()
                 );
-                vm.setUser(updateUser);
+                vm.setUser(updateUser, requireContext());
                 navController.navigate(R.id.action_to_settings);
                 NotificationParameters np = new NotificationParameters(vm.getSettings().getValue().isEnabled(),
                         h1, m1, h2, m2, interval);

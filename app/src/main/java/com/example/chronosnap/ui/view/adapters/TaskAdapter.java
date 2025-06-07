@@ -39,39 +39,35 @@ public class TaskAdapter extends ArrayAdapter<Task> {
         tv.setText(task.getName());
         (convertView.findViewById(R.id.category_color_view)).setBackgroundColor(task.getCategoryColor());
 
-        ImageButton shift = convertView.findViewById(R.id.task_shift_btn);
-        shift.setOnClickListener(v -> {
-            //TODO сдвиг задачи на след. день
-        });
+//        ImageButton shift = convertView.findViewById(R.id.task_shift_btn);
+//        shift.setOnClickListener(v -> {
+//        });
 
-        ImageButton edit = convertView.findViewById(R.id.task_edit_btn);
-        edit.setOnClickListener(v -> {
-            //TODO изменение/удаление задачи
+        ImageButton delete = convertView.findViewById(R.id.task_delete_btn);
+        delete.setOnClickListener(v -> {
+            //TODO удаление задачи
         });
 
         CheckBox ch = convertView.findViewById(R.id.task_checkbox);
-        if (task.isDone()) MarkTaskAsDone(tv, shift);
+        if (task.isDone()) MarkTaskAsDone(tv);
         ch.setChecked(task.isDone());
         ch.setOnClickListener(v -> {
             task.setDone(ch.isChecked());
-            if (task.isDone()) MarkTaskAsDone(tv, shift);
-            else MarkTaskAsUndone(tv, shift);
+            if (task.isDone()) MarkTaskAsDone(tv);
+            else MarkTaskAsUndone(tv);
         });
-
         return convertView;
     }
 
     @SuppressLint("ResourceAsColor")
-    private void MarkTaskAsDone(TextView tv, ImageButton ib){
+    private void MarkTaskAsDone(TextView tv){
         tv.setTextColor(R.color.dark_gray);
         tv.setPaintFlags(tv.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-        ib.setVisibility(View.INVISIBLE);
     }
 
     @SuppressLint("ResourceAsColor")
-    private void MarkTaskAsUndone(TextView tv, ImageButton ib){
+    private void MarkTaskAsUndone(TextView tv){
         tv.setTextColor(R.color.black);
         tv.setPaintFlags(tv.getPaintFlags() & (~ Paint.STRIKE_THRU_TEXT_FLAG));
-        ib.setVisibility(View.VISIBLE);
     }
 }

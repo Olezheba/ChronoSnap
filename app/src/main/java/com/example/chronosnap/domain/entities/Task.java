@@ -24,12 +24,12 @@ public class Task {
     private boolean isDone;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public Task (String uid, String name, int categoryColor, int sectionIndex){
+    public Task (String uid, String name, int categoryColor, LocalDate date, int sectionIndex){
         userId = uid;
         this.name = name;
         this.categoryColor = categoryColor;
         this.sectionIndex = sectionIndex;
-        date = LocalDate.now().toString();
+        this.date = LocalDate.now().toString();
         isDone = false;
     }
 

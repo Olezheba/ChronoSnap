@@ -1,5 +1,7 @@
 package com.example.chronosnap.ui.view.dialogs;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -56,6 +58,8 @@ public class CategoryDialog extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DialogCategoryBinding.inflate(inflater, container, false);
         vm = new ViewModelProvider(requireActivity()).get(SettingsVM.class);
+
+        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         newCategory = null;
         oldName = null;
