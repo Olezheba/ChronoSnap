@@ -17,7 +17,7 @@ import com.example.chronosnap.databinding.DialogStopwatchSavingBinding;
 public class SaveRecordDialogFragment extends DialogFragment {
 
     public interface SaveListener{
-        void onSave(String selectedCategory, byte priorety);
+        void onSave(String selectedCategory, int priorety);
         void onDelete();
     }
     DialogStopwatchSavingBinding binding;

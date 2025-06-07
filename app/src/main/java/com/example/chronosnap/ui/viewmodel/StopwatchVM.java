@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.chronosnap.domain.entities.ActivityEntry;
 import com.example.chronosnap.domain.usecases.AddActivityEntryUseCase;
+import com.example.chronosnap.domain.usecases.GetAllCategoriesUseCase;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
@@ -29,21 +30,12 @@ public class StopwatchVM extends ViewModel {
     private AddActivityEntryUseCase addActivityEntryUseCase;
 
     public List<Map.Entry<String, Integer>> getAllCategoriesList() {
-        Map<String, Integer> categories = new TreeMap<>();
-        categories.put("ExampleCategory1", 0);
-        categories.put("ExampleCategory2", 0);
-        //TODO получение всех категорий / use case
-
-        List<Map.Entry<String, Integer>> categoriesList = new ArrayList<>(categories.entrySet());
+        List<Map.Entry<String, Integer>> categoriesList = new ArrayList<>(getAllCategories().entrySet());
         return categoriesList;
     }
 
     public Map<String, Integer> getAllCategories() {
-        Map<String, Integer> categories = new TreeMap<>();
-        categories.put("ExampleCategory1", 0);
-        categories.put("ExampleCategory2", 0);
-        //TODO получение всех категорий / use case
-
+        Map<String, Integer> categories = GetAllCategoriesUseCase.execute();
         return categories;
     }
 
@@ -52,9 +44,10 @@ public class StopwatchVM extends ViewModel {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void saveActivityEntry(String selectedCategory, byte priority, long durationMillis) {
+    public void saveActivityEntry(String selectedCategory, int priority, long durationMillis) {
         Map<String, Integer> map = getAllCategories();
-        ActivityEntry ae = new ActivityEntry(uid, map.get(selectedCategory), start, durationMillis, priority);
+        ActivityEntry ae = new ActivityEntry(uid, selectedCategory, map.get(selectedCategory),
+                start, durationMillis, priority);
         addActivityEntryUseCase.execute(ae);
     }
 }

@@ -1,7 +1,6 @@
 package com.example.chronosnap.data.system;
 
 import android.app.usage.UsageEvents;
-import android.app.usage.UsageStats;
 import android.app.usage.UsageStatsManager;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -12,9 +11,9 @@ import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
-import com.example.chronosnap.data.repository.AppRepository;
 import com.example.chronosnap.domain.entities.ActivityEntry;
 import com.example.chronosnap.domain.usecases.AddActivityEntryUseCase;
+import com.example.chronosnap.utils.CategoryUtils;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.HashMap;
@@ -23,6 +22,7 @@ import java.util.Map;
 public class USM {
     private Context context;
     private UsageStatsManager usm;
+    CategoryUtils utils;
     private AddActivityEntryUseCase addActivityEntryUseCase;
 
     public USM(Context context){
@@ -51,8 +51,12 @@ public class USM {
                 if (foregroundTimes.containsKey(pkg)) {
                     long start = foregroundTimes.get(pkg);
                     long end = event.getTimeStamp();
+                    long duration = end-start;
+                    utils = new CategoryUtils(context);
+                    String categoryName = utils.getApplicationCategories()[getAppCategory(context, pkg)];
+                    int categoryColor = CategoryUtils.CATEGORY_COLORS[getAppCategory(context, pkg)];
                     ActivityEntry entry = new ActivityEntry(FirebaseAuth.getInstance().getUid(),
-                            0, start, end, 2);
+                            categoryName, categoryColor, start, duration, 2);
                     addActivityEntryUseCase.execute(entry);
 
                     foregroundTimes.remove(pkg);
@@ -65,7 +69,7 @@ public class USM {
 
     private long getLastSyncTime() {
         SharedPreferences prefs = context.getSharedPreferences("sync_prefs", Context.MODE_PRIVATE);
-        return prefs.getLong("last_usage_sync", System.currentTimeMillis() - 60 * 60 * 1000); // по умолчанию за час назад
+        return prefs.getLong("last_usage_sync", System.currentTimeMillis() - 60 * 60 * 1000);
     }
 
     private void saveLastSyncTime(long time) {
@@ -73,13 +77,15 @@ public class USM {
         prefs.edit().putLong("last_usage_sync", time).apply();
     }
 
-    public static String getAppCategory(Context context, String packageName) {
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static int getAppCategory(Context context, String packageName) {
         PackageManager pm = context.getPackageManager();
         try {
             ApplicationInfo info = pm.getApplicationInfo(packageName, 0);
-            return (String) pm.getApplicationLabel(info);
+            return info.category+1;
         } catch (PackageManager.NameNotFoundException e) {
-            return packageName;
+            Log.d("USM", "Не удалось определить категорию");
         }
+        return 0;
     }
 }

@@ -22,10 +22,6 @@ public class ChartUtils {
 
         pieChart.setUsePercentValues(true);
         pieChart.setDrawHoleEnabled(true);
-        pieChart.setHoleRadius(40f);
-        pieChart.setTransparentCircleRadius(45f);
-        pieChart.getDescription().setEnabled(false);
-        pieChart.getLegend().setEnabled(false);
         pieChart.invalidate();
     }
 }

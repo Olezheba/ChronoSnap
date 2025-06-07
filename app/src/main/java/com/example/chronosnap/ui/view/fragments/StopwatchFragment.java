@@ -55,10 +55,9 @@ public class StopwatchFragment extends Fragment {
                     dialog.setSaveListener(new SaveRecordDialogFragment.SaveListener() {
                         @RequiresApi(api = Build.VERSION_CODES.O)
                         @Override
-                        public void onSave(String selectedCategory, byte priority) {
+                        public void onSave(String selectedCategory, int priority) {
                             vm.saveActivityEntry(selectedCategory, priority, duration);
                         }
-
                         @Override
                         public void onDelete() {}
                     });
@@ -79,7 +78,6 @@ public class StopwatchFragment extends Fragment {
                         .start();
             }
         });
-
         return binding.getRoot();
     }
 

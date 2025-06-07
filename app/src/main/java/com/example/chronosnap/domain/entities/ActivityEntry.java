@@ -19,16 +19,18 @@ public class ActivityEntry {
 
     @ColumnInfo(name = "user_id")
     private String userId;
-    private int categoryIndex;
+    private String categoryName;
+    private int categoryColor;
     private String date;
     private long startTime;
     private long duration;
     private int priority;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public ActivityEntry (String userId, Integer categoryIndex, long startTime, long duration, int priority){
+    public ActivityEntry (String userId, String categoryName, int categoryColor, long startTime, long duration, int priority){
         this.userId = userId;
-        this.categoryIndex = categoryIndex;
+        this.categoryColor = categoryColor;
+        this.categoryName = categoryName;
         date = LocalDate.now().toString();
         this.startTime = startTime;
         this.duration = duration;
@@ -51,12 +53,20 @@ public class ActivityEntry {
         this.id = id;
     }
 
-    public int getCategoryIndex() {
-        return categoryIndex;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public void setCategoryIndex(int categoryIndex) {
-        this.categoryIndex = categoryIndex;
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    public int getCategoryColor() {
+        return categoryColor;
+    }
+
+    public void setCategoryColor(int categoryColor) {
+        this.categoryColor = categoryColor;
     }
 
     public long getStartTime() {
@@ -69,24 +79,11 @@ public class ActivityEntry {
 
     public long getDuration() { return duration; }
 
-    public void setDuration(long duration) { this.duration = duration; }
+    public void setDuration(int duration) { this.duration = duration; }
 
     public String getDate() { return date; }
 
     public void setDate(String date) { this.date = date; }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ActivityEntry that = (ActivityEntry) o;
-        return categoryIndex == that.categoryIndex && startTime == that.startTime && duration == that.duration && Objects.equals(id, that.id) && Objects.equals(userId, that.userId) && Objects.equals(date, that.date);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, userId, categoryIndex, date, startTime, duration);
-    }
 
     public int getPriority() {
         return priority;
@@ -94,5 +91,18 @@ public class ActivityEntry {
 
     public void setPriority(int priority) {
         this.priority = priority;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ActivityEntry that = (ActivityEntry) o;
+        return categoryColor == that.categoryColor && startTime == that.startTime && duration == that.duration && priority == that.priority && Objects.equals(id, that.id) && Objects.equals(userId, that.userId) && Objects.equals(categoryName, that.categoryName) && Objects.equals(date, that.date);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, userId, categoryName, categoryColor, date, startTime, duration, priority);
     }
 }

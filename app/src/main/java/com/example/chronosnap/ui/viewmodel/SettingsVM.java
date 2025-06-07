@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModel;
 import com.example.chronosnap.data.repository.UserRepository;
 import com.example.chronosnap.domain.entities.NotificationParameters;
 import com.example.chronosnap.domain.entities.User;
+import com.example.chronosnap.domain.usecases.GetAllCategoriesUseCase;
 import com.example.chronosnap.domain.usecases.UpdateUserUseCase;
 import com.example.chronosnap.ui.view.activities.AuthActivity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -111,11 +112,7 @@ public class SettingsVM extends ViewModel {
     }
 
     public List<Map.Entry<String, Integer>> getAllCategoriesList() {
-        Map<String, Integer> categories = new TreeMap<>();
-        categories.put("ExampleCategory1", 0);
-        categories.put("ExampleCategory2", 0);
-        //TODO получение всех категорий / use case
-
+        Map<String, Integer> categories = GetAllCategoriesUseCase.execute();
         List<Map.Entry<String, Integer>> categoriesList = new ArrayList<>(categories.entrySet());
         return categoriesList;
     }

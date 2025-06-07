@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.chronosnap.domain.entities.Task;
 import com.example.chronosnap.domain.usecases.AddNewTaskUseCase;
+import com.example.chronosnap.domain.usecases.GetAllCategoriesUseCase;
 import com.example.chronosnap.domain.usecases.GetTasksForDayUseCase;
 
 import java.time.LocalDate;
@@ -31,11 +32,7 @@ public class TaskVM extends ViewModel {
     }
 
     public List<Map.Entry<String, Integer>> getAllCategoriesList() {
-        Map<String, Integer> categories = new TreeMap<>();
-        categories.put("ExampleCategory1", 0);
-        categories.put("ExampleCategory2", 0);
-        //TODO получение всех категорий / use case
-
+        Map<String, Integer> categories = GetAllCategoriesUseCase.execute();
         List<Map.Entry<String, Integer>> categoriesList = new ArrayList<>(categories.entrySet());
         return categoriesList;
     }

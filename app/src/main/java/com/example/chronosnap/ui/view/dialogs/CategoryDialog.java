@@ -106,20 +106,20 @@ public class CategoryDialog extends DialogFragment {
         binding.saveBtn.setOnClickListener(v -> {
             if (binding.categoryEt.getText().toString().equals("")) {
                 binding.categoryEt.setError("Пустое поле");
-                return;
-            }
-            Map<String, Integer> categories = new TreeMap<>();
-            for (Map.Entry<String, Integer> category : categoryList){
-                categories.put(category.getKey(), category.getValue());
-            }
-            if (newCategory) {
-                categories.put(binding.categoryEt.getText().toString(), colors.get(checkedColorIndex));
-            } else {
-                categories.remove(oldName);
-                categories.put(binding.categoryEt.getText().toString(), colors.get(checkedColorIndex));
-            }
-            if (listener != null){
-                listener.onSave(categories);
+            }else{
+                Map<String, Integer> categories = new TreeMap<>();
+                for (Map.Entry<String, Integer> category : categoryList){
+                    categories.put(category.getKey(), category.getValue());
+                }
+                if (newCategory) {
+                    categories.put(binding.categoryEt.getText().toString(), colors.get(checkedColorIndex));
+                } else {
+                    categories.remove(oldName);
+                    categories.put(binding.categoryEt.getText().toString(), colors.get(checkedColorIndex));
+                }
+                if (listener != null){
+                    listener.onSave(categories);
+                }
             }
         });
 

@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.chronosnap.domain.usecases.GetEntriesByCategoriesUseCase;
 import com.example.chronosnap.utils.ChartUtils;
 import com.example.chronosnap.databinding.FragmentStatisticsBinding;
 import com.github.mikephil.charting.data.PieEntry;
@@ -43,23 +44,22 @@ public class StatisticsFragment extends Fragment {
 
     }
 
-    private Map<Map.Entry<Integer, String>, Integer> getCategoriesDurations(String startDate, String finishDate) {
-        // TODO: получение данных из репозитория / use case
-        return new HashMap<>();
+    private Map<Map.Entry<String, Integer>, Integer> getCategoriesDurations(String startDate, String finishDate) {
+        return GetEntriesByCategoriesUseCase.execute(startDate, finishDate);
     }
 
-    private ArrayList<PieEntry> getPieEntries(Map<Map.Entry<Integer, String>, Integer> categoryDurations) {
+    private ArrayList<PieEntry> getPieEntries(Map<Map.Entry<String, Integer>, Integer> categoryDurations) {
         ArrayList<PieEntry> pieEntries = new ArrayList<>();
-        for (Map.Entry<Map.Entry<Integer, String>, Integer> entry : categoryDurations.entrySet()) {
+        for (Map.Entry<Map.Entry<String, Integer>, Integer> entry : categoryDurations.entrySet()) {
             pieEntries.add(new PieEntry(entry.getValue(), entry.getKey().getValue()));
         }
         return pieEntries;
     }
 
-    private ArrayList<Integer> getPieEntriesColors(Map<Map.Entry<Integer, String>, Integer> categoryDurations) {
+    private ArrayList<Integer> getPieEntriesColors(Map<Map.Entry<String, Integer>, Integer> categoryDurations) {
         ArrayList<Integer> colors = new ArrayList<>();
-        for (Map.Entry<Map.Entry<Integer, String>, Integer> entry : categoryDurations.entrySet()) {
-            colors.add(entry.getKey().getKey());
+        for (Map.Entry<Map.Entry<String, Integer>, Integer> entry : categoryDurations.entrySet()) {
+            colors.add(entry.getKey().getValue());
         }
         return colors;
     }
