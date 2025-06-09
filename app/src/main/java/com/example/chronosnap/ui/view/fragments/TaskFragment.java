@@ -20,7 +20,6 @@ import android.widget.ImageButton;
 
 import com.example.chronosnap.R;
 import com.example.chronosnap.ui.view.adapters.CalendarAdapter;
-import com.example.chronosnap.ui.view.dialogs.SaveRecordDialogFragment;
 import com.example.chronosnap.ui.view.dialogs.TaskDialog;
 import com.example.chronosnap.ui.viewmodel.TaskVM;
 import com.example.chronosnap.utils.CalendarUtils;
@@ -31,7 +30,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 
-public class ListFragment extends Fragment implements CalendarAdapter.OnItemListener {
+public class TaskFragment extends Fragment implements CalendarAdapter.OnItemListener {
     private FragmentListBinding binding;
     private TaskVM vm;
 
@@ -45,13 +44,13 @@ public class ListFragment extends Fragment implements CalendarAdapter.OnItemList
         binding.back.setOnClickListener(v -> {
             CalendarUtils.selectedDate = CalendarUtils.selectedDate.minusWeeks(1);
             setWeekView();
-            vm.updateLists(selectedDate);
+            vm.updateLists(selectedDate.toString());
         });
 
         binding.forward.setOnClickListener(v -> {
             CalendarUtils.selectedDate = CalendarUtils.selectedDate.plusWeeks(1);
             setWeekView();
-            vm.updateLists(selectedDate);
+            vm.updateLists(selectedDate.toString());
         });
 
         if (CalendarUtils.selectedDate == null) {
@@ -95,7 +94,7 @@ public class ListFragment extends Fragment implements CalendarAdapter.OnItemList
         if (date != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             CalendarUtils.selectedDate = date;
             setWeekView();
-            vm.updateLists(selectedDate);
+            vm.updateLists(selectedDate.toString());
         }
     }
 

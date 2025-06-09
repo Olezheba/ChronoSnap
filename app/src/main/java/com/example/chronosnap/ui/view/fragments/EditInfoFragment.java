@@ -24,8 +24,6 @@ import com.example.chronosnap.domain.entities.User;
 import com.example.chronosnap.ui.viewmodel.SettingsVM;
 import com.example.chronosnap.utils.ValidCheckers;
 
-import java.util.Locale;
-
 public class EditInfoFragment extends Fragment {
 
     FragmentEditInfoBinding binding;
@@ -52,10 +50,10 @@ public class EditInfoFragment extends Fragment {
             binding.usernameEt.setText(user.getUsername());
             binding.emailEt.setText(user.getEmail());
 
-            String startTime = String.format(Locale.getDefault(), "%02d:%02d", vm.getSettings().getValue().getStartHour(),
-                    vm.getSettings().getValue().getStartMinute());
-            String finishTime = String.format(Locale.getDefault(), "%02d:%02d", vm.getSettings().getValue().getFinishHour(),
-                    vm.getSettings().getValue().getFinishMinute());
+            String startTime = String.format("%02d", vm.getSettings().getValue().getStartHour())+
+                    String.format("%02d", vm.getSettings().getValue().getStartMinute());
+            String finishTime = String.format("%02d", vm.getSettings().getValue().getFinishHour())+
+                    String.format("%02d", vm.getSettings().getValue().getFinishMinute());
 
             binding.staartTimeEt.setText(startTime);
             binding.finishTimeEt.setText(finishTime);

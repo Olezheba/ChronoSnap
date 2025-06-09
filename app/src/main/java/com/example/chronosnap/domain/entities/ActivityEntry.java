@@ -10,6 +10,7 @@ import androidx.room.PrimaryKey;
 
 import java.time.LocalDate;
 import java.util.Objects;
+import java.util.UUID;
 
 @Entity(tableName = "activity_entries")
 public class ActivityEntry {
@@ -28,6 +29,7 @@ public class ActivityEntry {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public ActivityEntry (String userId, String categoryName, int categoryColor, long startTime, long duration, int priority){
+        id = UUID.randomUUID().toString();
         this.userId = userId;
         this.categoryColor = categoryColor;
         this.categoryName = categoryName;

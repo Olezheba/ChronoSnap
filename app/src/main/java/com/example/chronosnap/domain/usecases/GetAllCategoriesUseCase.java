@@ -1,11 +1,14 @@
 package com.example.chronosnap.domain.usecases;
 
+import androidx.lifecycle.MutableLiveData;
+
+import com.example.chronosnap.data.repository.UserRepository;
+
 import java.util.TreeMap;
 
 public class GetAllCategoriesUseCase {
-    public static TreeMap<String, Integer> execute() {
-        TreeMap<String, Integer> categories = new TreeMap<>();
-
-        return categories;
+    public static MutableLiveData<TreeMap<String, Integer>> execute() {
+        UserRepository repo = new UserRepository();
+        return repo.getCategoriesLiveData();
     }
 }

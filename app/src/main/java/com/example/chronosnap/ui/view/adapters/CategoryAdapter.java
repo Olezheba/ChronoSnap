@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.chronosnap.R;
+import com.google.android.material.card.MaterialCardView;
 
 import java.util.List;
 import java.util.Map;
@@ -48,7 +49,7 @@ public class CategoryAdapter extends ArrayAdapter<Map.Entry<String, Integer>> {
         TextView tv = convertView.findViewById(R.id.category_name);
         assert category != null;
         tv.setText(category.getKey());
-        (convertView.findViewById(R.id.category_color)).setBackgroundColor(category.getValue());
+        ((MaterialCardView)convertView.findViewById(R.id.category_color)).setCardBackgroundColor(category.getValue());
 
         if (!isSpinner) {
             ImageButton edit = convertView.findViewById(R.id.edit_category_btn);
@@ -63,4 +64,9 @@ public class CategoryAdapter extends ArrayAdapter<Map.Entry<String, Integer>> {
         return convertView;
     }
 
+    public void updateData(List<Map.Entry<String, Integer>> list) {
+        this.clear();
+        this.addAll(list);
+        notifyDataSetChanged();
+    }
 }

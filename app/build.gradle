@@ -39,7 +39,9 @@ dependencies {
     implementation libs.material
     implementation libs.constraintlayout
     testImplementation libs.junit
-    implementation libs.androidx.room.runtime
+    implementation 'androidx.room:room-runtime-android:2.7.1'
+    //noinspection UseTomlInstead
+    annotationProcessor('androidx.room:room-compiler:2.7.1')
     //noinspection UseTomlInstead
     implementation 'com.google.code.gson:gson:2.10.1'
 
@@ -55,6 +57,7 @@ dependencies {
     implementation(libs.googleid)
     implementation libs.firebase.database
     implementation libs.firebase.database.v2030
+    implementation 'com.google.firebase:firebase-firestore:25.1.4'
 
 //    livedata
     implementation libs.androidx.lifecycle.livedata

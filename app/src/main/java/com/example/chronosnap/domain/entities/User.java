@@ -2,28 +2,19 @@ package com.example.chronosnap.domain.entities;
 
 import android.content.Context;
 
-import androidx.room.Embedded;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
-import androidx.room.TypeConverters;
-
-import com.example.chronosnap.data.persistentstorage.Converters;
 import com.example.chronosnap.domain.usecases.CreateNewCategoriesMap;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Map;
 import java.util.TreeMap;
 
-@Entity(tableName = "user")
 public class User {
-    @PrimaryKey(autoGenerate = true)
     private String id;
     private String email;
     private String username;
-    @TypeConverters(Converters.class)
     private Map<String, Integer> categories;
 
-    public User(String un, String email, String password, Context context) {
+    public User(String un, String email, Context context) {
         username = un;
         this.email = email;
         categories = new TreeMap<>(CreateNewCategoriesMap.execute(context));
@@ -31,7 +22,7 @@ public class User {
 
     public User(String id, String un, String email, Map<String, Integer> categories) {
         this.id = id;
-        username = un;
+        this.username = un;
         this.email = email;
         this.categories = categories;
     }

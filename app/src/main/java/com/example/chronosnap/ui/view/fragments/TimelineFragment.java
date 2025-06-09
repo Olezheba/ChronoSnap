@@ -1,6 +1,7 @@
 package com.example.chronosnap.ui.view.fragments;
 
 import static com.example.chronosnap.utils.CalendarUtils.daysInWeekArray;
+import static com.example.chronosnap.utils.CalendarUtils.selectedDate;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -17,12 +18,17 @@ import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.chronosnap.data.repository.ActivityEntriesRepository;
 import com.example.chronosnap.domain.entities.ActivityEntry;
 import com.example.chronosnap.R;
+import com.example.chronosnap.domain.usecases.GetDayActivityEntriesUseCase;
 import com.example.chronosnap.ui.view.adapters.CalendarAdapter;
+import com.example.chronosnap.ui.viewmodel.TimelineVM;
+import com.example.chronosnap.ui.viewmodelfactories.TimelineVMFactory;
 import com.example.chronosnap.utils.CalendarUtils;
 
 import java.time.LocalDate;
@@ -40,12 +46,14 @@ public class TimelineFragment extends Fragment implements CalendarAdapter.OnItem
     private ImageButton forward;
     private LinearLayout timeColumn;
     private FrameLayout activityColumn;
+    private TimelineVM vm;
 
     @SuppressLint("MissingInflatedId")
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_timeline, container, false);
+        vm = new ViewModelProvider(requireActivity(), new TimelineVMFactory(requireContext())).get(TimelineVM.class);
 
         monthYearText = view.findViewById(R.id.month_year_text);
         calendarRecyclerView = view.findViewById(R.id.calendar_view);
@@ -70,7 +78,9 @@ public class TimelineFragment extends Fragment implements CalendarAdapter.OnItem
         setWeekView();
 
         fillTimeColumn(getContext(), timeColumn);
-        fillActivityColumn(getContext(), activityColumn);
+        vm.getList().observe(getViewLifecycleOwner(), activityEntries -> {
+            fillActivityColumn(requireContext(), activityColumn, activityEntries);
+        });
 
         return view;
     }
@@ -115,9 +125,7 @@ public class TimelineFragment extends Fragment implements CalendarAdapter.OnItem
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private void fillActivityColumn(Context context, FrameLayout layout){
-        //TODO метод получения списка активностей
-        List<ActivityEntry> activityEntries = null;
+    private void fillActivityColumn(Context context, FrameLayout layout, List<ActivityEntry> activityEntries){
         float density = getResources().getDisplayMetrics().density;
         long currentDate = 0;
         if (activityEntries!=null){

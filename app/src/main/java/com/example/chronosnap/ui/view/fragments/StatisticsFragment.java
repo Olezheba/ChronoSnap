@@ -5,11 +5,16 @@ import android.os.Bundle;
 
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.room.Room;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.chronosnap.data.persistentstorage.AppDatabase;
+import com.example.chronosnap.data.remotedata.ActivityEntryRemoteDataSource;
+import com.example.chronosnap.data.repository.ActivityEntriesRepository;
+import com.example.chronosnap.domain.usecases.GetDayActivityEntriesUseCase;
 import com.example.chronosnap.domain.usecases.GetEntriesByCategoriesUseCase;
 import com.example.chronosnap.utils.ChartUtils;
 import com.example.chronosnap.databinding.FragmentStatisticsBinding;
@@ -44,21 +49,25 @@ public class StatisticsFragment extends Fragment {
 
     }
 
-    private Map<Map.Entry<String, Integer>, Integer> getCategoriesDurations(String startDate, String finishDate) {
-        return GetEntriesByCategoriesUseCase.execute(startDate, finishDate);
+    private Map<Map.Entry<String, Integer>, Long> getCategoriesDurations(String startDate, String finishDate) {
+        AppDatabase db = Room.databaseBuilder(requireContext(), AppDatabase.class, "db").build();
+        GetEntriesByCategoriesUseCase getEntriesByCategoriesUseCase = new GetEntriesByCategoriesUseCase
+                (new GetDayActivityEntriesUseCase(new ActivityEntriesRepository
+                        (db,new ActivityEntryRemoteDataSource())));
+        return getEntriesByCategoriesUseCase.execute(startDate, finishDate).getValue();
     }
 
-    private ArrayList<PieEntry> getPieEntries(Map<Map.Entry<String, Integer>, Integer> categoryDurations) {
+    private ArrayList<PieEntry> getPieEntries(Map<Map.Entry<String, Integer>, Long> categoryDurations) {
         ArrayList<PieEntry> pieEntries = new ArrayList<>();
-        for (Map.Entry<Map.Entry<String, Integer>, Integer> entry : categoryDurations.entrySet()) {
+        for (Map.Entry<Map.Entry<String, Integer>, Long> entry : categoryDurations.entrySet()) {
             pieEntries.add(new PieEntry(entry.getValue(), entry.getKey().getValue()));
         }
         return pieEntries;
     }
 
-    private ArrayList<Integer> getPieEntriesColors(Map<Map.Entry<String, Integer>, Integer> categoryDurations) {
+    private ArrayList<Integer> getPieEntriesColors(Map<Map.Entry<String, Integer>, Long> categoryDurations) {
         ArrayList<Integer> colors = new ArrayList<>();
-        for (Map.Entry<Map.Entry<String, Integer>, Integer> entry : categoryDurations.entrySet()) {
+        for (Map.Entry<Map.Entry<String, Integer>, Long> entry : categoryDurations.entrySet()) {
             colors.add(entry.getKey().getValue());
         }
         return colors;

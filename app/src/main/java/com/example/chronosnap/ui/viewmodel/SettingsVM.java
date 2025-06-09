@@ -3,8 +3,10 @@ package com.example.chronosnap.ui.viewmodel;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -13,20 +15,20 @@ import com.example.chronosnap.data.repository.UserRepository;
 import com.example.chronosnap.domain.entities.NotificationParameters;
 import com.example.chronosnap.domain.entities.User;
 import com.example.chronosnap.domain.usecases.GetAllCategoriesUseCase;
+import com.example.chronosnap.domain.usecases.UpdateAllCategoriesUseCase;
 import com.example.chronosnap.domain.usecases.UpdateUserUseCase;
 import com.example.chronosnap.ui.view.activities.AuthActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 import java.util.TreeMap;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class SettingsVM extends ViewModel {
-    private final UserRepository userRepository = new UserRepository();
+    private final UserRepository repo = new UserRepository();
     private final MutableLiveData<User> user = new MutableLiveData<>();
+    private final MutableLiveData<TreeMap<String, Integer>> categories = repo.getCategoriesLiveData();
     private final MutableLiveData<NotificationParameters> settings = new MutableLiveData<>();
 
     public SettingsVM() {
@@ -46,10 +48,11 @@ public class SettingsVM extends ViewModel {
         User updatedUser = user.getValue();
         if (updatedUser == null) return;
 
-        UpdateUserUseCase.execute(updatedUser, task -> {
-            if (task.isSuccessful()) {
+        repo.updateUser(updatedUser, task -> {
+            if (task.isSuccessful())
                 Toast.makeText(context, "Настройки обновлены", Toast.LENGTH_SHORT).show();
-            }
+            else
+                Toast.makeText(context, "Ошибка сохранения", Toast.LENGTH_SHORT).show();
         });
     }
 
@@ -89,35 +92,39 @@ public class SettingsVM extends ViewModel {
     public void updateSettingsPreferences(Context context, NotificationParameters ns) {
         SharedPreferences prefs = context.getSharedPreferences("prefs", Context.MODE_PRIVATE);
 
-        prefs.edit().putInt("startHour", 9).apply();
-        prefs.edit().putInt("startMinute", 0).apply();
-        prefs.edit().putInt("finishHour", 21).apply();
-        prefs.edit().putInt("finishMinute", 0).apply();
-        prefs.edit().putInt("interval", 30).apply();
+        prefs.edit().putInt("startHour", ns.getStartHour()).apply();
+        prefs.edit().putInt("startMinute", ns.getStartMinute()).apply();
+        prefs.edit().putInt("finishHour", ns.getFinishHour()).apply();
+        prefs.edit().putInt("finishMinute", ns.getFinishMinute()).apply();
+        prefs.edit().putInt("interval", ns.getInterval()).apply();
 
         settings.setValue(ns);
     }
 
-    public void enableNotification(Context context, boolean b) {
+    public void enableNotification(Context context, boolean enabled) {
         SharedPreferences prefs = context.getSharedPreferences("prefs", Context.MODE_PRIVATE);
 
-        prefs.edit().putBoolean("enabled", b);
-        updateNotification(b);
+        prefs.edit().putBoolean("enabled", enabled).apply();
+        updateNotification(enabled);
     }
 
-    private void updateNotification(boolean b) {
+    private void updateNotification(boolean enabled) {
         NotificationParameters np = settings.getValue();
-        np.setEnabled(b);
-        settings.setValue(np);
+        if (np != null) {
+            np.setEnabled(enabled);
+            settings.setValue(np);
+        }
     }
 
-    public List<Map.Entry<String, Integer>> getAllCategoriesList() {
-        Map<String, Integer> categories = GetAllCategoriesUseCase.execute();
-        List<Map.Entry<String, Integer>> categoriesList = new ArrayList<>(categories.entrySet());
-        return categoriesList;
+    public LiveData<TreeMap<String, Integer>> getCategories() {
+        return categories;
     }
 
-    public void updateAllCategories(Map<String, Integer> map) {
-        //TODO обновление списка категорий /use case
+    public void onSave(TreeMap<String, Integer> updatedCategories) {
+        repo.updateAllCategories(updatedCategories, task -> {
+            if (!task.isSuccessful()) {
+                Log.e("SettingsVM", "Ошибка обновления категорий");
+            }
+        });
     }
 }

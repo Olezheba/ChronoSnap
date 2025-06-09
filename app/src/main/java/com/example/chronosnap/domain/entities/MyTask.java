@@ -2,38 +2,47 @@ package com.example.chronosnap.domain.entities;
 
 import android.os.Build;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Entity(tableName = "tasks")
-public class Task {
-    @PrimaryKey(autoGenerate = true)
+public class MyTask {
+    @NonNull
+    @PrimaryKey
     private String id;
 
     @ColumnInfo(name = "user_id")
     private String userId;
+    @ColumnInfo(name = "name")
     private String name;
+    @ColumnInfo(name = "date")
     private String date;
+    @ColumnInfo(name = "category_color")
     private int categoryColor;
+    @ColumnInfo(name = "section_index")
     private int sectionIndex;
     @ColumnInfo(name = "is_done")
     private boolean isDone;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public Task (String uid, String name, int categoryColor, LocalDate date, int sectionIndex){
+    public MyTask(String id, String uid, String name, int categoryColor, LocalDate date, int sectionIndex){
+        this.id = id != null ? id : UUID.randomUUID().toString();
         userId = uid;
         this.name = name;
         this.categoryColor = categoryColor;
         this.sectionIndex = sectionIndex;
-        this.date = LocalDate.now().toString();
+        this.date = date.toString();
         isDone = false;
     }
 
-    public Task (String uid, String name, int categoryColor, String date, int sectionIndex){
+    public MyTask(String id, String uid, String name, int categoryColor, String date, int sectionIndex){
+        this.id = id != null ? id : UUID.randomUUID().toString();
         userId = uid;
         this.name = name;
         this.categoryColor = categoryColor;
@@ -41,6 +50,8 @@ public class Task {
         this.date = date;
         isDone = false;
     }
+
+    public MyTask(){}
 
     public boolean isDone() {
         return isDone;

@@ -1,16 +1,19 @@
 package com.example.chronosnap.domain.usecases;
 
-import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.LiveData;
 
-import com.example.chronosnap.domain.entities.Task;
+import com.example.chronosnap.data.repository.TaskRepository;
+import com.example.chronosnap.domain.entities.MyTask;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.List;
 
 public class GetTasksForDayUseCase {
-    public static ArrayList<Task> execute(LocalDate date, int sectionIndex){
-        ArrayList<Task> list = new ArrayList<>();
-        //TODO получение задач / use case
-        return list;
+    TaskRepository repo;
+    public GetTasksForDayUseCase(TaskRepository repo) {
+        this.repo = repo;
+    }
+
+    public LiveData<List<MyTask>> execute(String date, int sectionIndex){
+        return repo.getTasks(date, sectionIndex);
     }
 }

@@ -67,7 +67,7 @@
     <string name="from">С</string>
     <string name="to">до</string>
     <string name="every">каждые</string>
-    <string name="minutes">минут</string>
+    <string name="minutes">мин.</string>
     <string name="categories">Категории</string>
     <string name="add_category">Добавить категорию</string>
     <string name="account_control">Управление аккаунтом</string>

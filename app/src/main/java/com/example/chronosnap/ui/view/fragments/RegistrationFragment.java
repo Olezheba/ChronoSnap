@@ -80,7 +80,7 @@ public class RegistrationFragment extends Fragment {
                         if (!isAdded() || requireActivity().isFinishing()) return;
 
                         String uid = auth.getCurrentUser().getUid();
-                        User newUser = new User(un, email, password, getContext());
+                        User newUser = new User(un, email, getContext());
                         db.child("users").child(uid).setValue(newUser);
 
                         FirebaseUser firebaseUser = auth.getCurrentUser();

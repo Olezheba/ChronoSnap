@@ -164,7 +164,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="@{viewModel.settings.enabled}"
-                        app:thumbTint="@color/the_lightest_gray"/>
+                        app:thumbTint="@color/the_lightest_gray"
+                        android:clickable="true"
+                        android:focusable="true"/>
 
                 </LinearLayout>
 

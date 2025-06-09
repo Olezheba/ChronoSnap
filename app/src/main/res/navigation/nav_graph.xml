@@ -20,7 +20,7 @@
     <fragment
         android:id="@+id/fragment_list"
         android:label="List"
-        android:name="com.example.chronosnap.ui.view.fragments.ListFragment"
+        android:name="com.example.chronosnap.ui.view.fragments.TaskFragment"
         tools:layout="@layout/fragment_list"/>
 
     <fragment

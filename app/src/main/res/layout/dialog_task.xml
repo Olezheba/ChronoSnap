@@ -71,7 +71,7 @@
             </LinearLayout>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/save_activity_entry"
+                android:id="@+id/save_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
@@ -82,7 +82,7 @@
                 android:layout_marginBottom="10dp"/>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/delete_activity_entry"
+                android:id="@+id/delete_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
