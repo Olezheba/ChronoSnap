@@ -3,6 +3,7 @@ package com.example.chronosnap.ui.viewmodel;
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -20,6 +21,7 @@ import java.util.TreeMap;
 public class StopwatchVM extends ViewModel {
 
     private MutableLiveData<Boolean> running = new MutableLiveData<>(false);
+    private LiveData<TreeMap<String, Integer>> categories = getAllCategories();
     private long start = 0L;
     private final String uid = FirebaseAuth.getInstance().getUid();
 
@@ -40,7 +42,8 @@ public class StopwatchVM extends ViewModel {
     }
 
     public MutableLiveData<TreeMap<String, Integer>> getAllCategories() {
-        MutableLiveData<TreeMap<String, Integer>> categories = GetAllCategoriesUseCase.execute();
+        String uid = FirebaseAuth.getInstance().getUid();
+        MutableLiveData<TreeMap<String, Integer>> categories = GetAllCategoriesUseCase.execute(uid);
         return categories;
     }
 

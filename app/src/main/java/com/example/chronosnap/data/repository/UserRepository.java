@@ -17,14 +17,12 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.TreeMap;
 
 public class UserRepository {
-    private final FirebaseAuth fAuth;
     private final String uid;
     private final DatabaseReference dbRef;
     private final MutableLiveData<TreeMap<String, Integer>> categoriesLiveData = new MutableLiveData<>();
 
-    public UserRepository() {
-        this.fAuth = FirebaseAuth.getInstance();
-        this.uid = fAuth.getCurrentUser () != null ? fAuth.getCurrentUser ().getUid() : null;
+    public UserRepository(String uid) {
+        this.uid = uid;
         this.dbRef = FirebaseDatabase.getInstance().getReference("users");
         if (uid != null) {
             loadCategories();

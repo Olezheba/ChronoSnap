@@ -16,13 +16,14 @@ public class TimelineVM extends ViewModel {
     public TimelineVM(AppDatabase db) {
         this.db = db;
     }
-    GetDayActivityEntriesUseCase getDayActivityEntriesUseCase = new GetDayActivityEntriesUseCase
-            (new ActivityEntriesRepository(db, new ActivityEntryRemoteDataSource()));
+
     private MutableLiveData<List<ActivityEntry>> list = new MutableLiveData<>();
     public MutableLiveData<List<ActivityEntry>> getList() {
         return list;
     }
     public void updateList(String selectedDate){
+        GetDayActivityEntriesUseCase getDayActivityEntriesUseCase = new GetDayActivityEntriesUseCase
+                (new ActivityEntriesRepository(db, new ActivityEntryRemoteDataSource()));
         list.postValue(getDayActivityEntriesUseCase.execute(selectedDate).getValue());
     }
 }

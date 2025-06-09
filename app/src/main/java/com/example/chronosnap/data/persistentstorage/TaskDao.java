@@ -19,6 +19,6 @@ public interface TaskDao {
     @Delete
     void deleteTask(MyTask myTask);
 
-    @Query("SELECT * FROM MyTask WHERE date = :date AND user_id = :uid AND section_index = :sectionIndex ORDER BY id ASC")
+    @Query("SELECT * FROM tasks WHERE date = :date AND user_id = :uid AND section_index = :sectionIndex ORDER BY id ASC")
     LiveData<List<MyTask>> getTasks(String date, String uid, int sectionIndex);
 }

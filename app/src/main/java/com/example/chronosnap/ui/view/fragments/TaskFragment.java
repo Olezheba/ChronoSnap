@@ -22,6 +22,7 @@ import com.example.chronosnap.R;
 import com.example.chronosnap.ui.view.adapters.CalendarAdapter;
 import com.example.chronosnap.ui.view.dialogs.TaskDialog;
 import com.example.chronosnap.ui.viewmodel.TaskVM;
+import com.example.chronosnap.ui.viewmodelfactories.TaskVMFactory;
 import com.example.chronosnap.utils.CalendarUtils;
 import com.example.chronosnap.databinding.FragmentListBinding;
 import com.google.firebase.auth.FirebaseAuth;
@@ -39,7 +40,7 @@ public class TaskFragment extends Fragment implements CalendarAdapter.OnItemList
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentListBinding.inflate(inflater, container, false);
-        vm = new ViewModelProvider(requireActivity()).get(TaskVM.class);
+        vm = new ViewModelProvider(requireActivity(), new TaskVMFactory(requireContext())).get(TaskVM.class);
 
         binding.back.setOnClickListener(v -> {
             CalendarUtils.selectedDate = CalendarUtils.selectedDate.minusWeeks(1);
@@ -148,6 +149,7 @@ public class TaskFragment extends Fragment implements CalendarAdapter.OnItemList
             public void onSave(String name, int color) {
                 vm.addTask(FirebaseAuth.getInstance().getCurrentUser().getUid(),
                         name, color, date, sectionIndex);
+                vm.updateLists(date.toString());
             }
 
             @Override

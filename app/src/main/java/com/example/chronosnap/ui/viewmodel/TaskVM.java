@@ -14,6 +14,7 @@ import com.example.chronosnap.domain.entities.MyTask;
 import com.example.chronosnap.domain.usecases.AddNewTaskUseCase;
 import com.example.chronosnap.domain.usecases.GetAllCategoriesUseCase;
 import com.example.chronosnap.domain.usecases.GetTasksForDayUseCase;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -48,6 +49,7 @@ public class TaskVM extends ViewModel {
     }
 
     public LiveData<TreeMap<String, Integer>> getCategoriesLiveData() {
-        return GetAllCategoriesUseCase.execute();
+        String uid = FirebaseAuth.getInstance().getUid();
+        return GetAllCategoriesUseCase.execute(uid);
     }
 }

@@ -23,6 +23,8 @@ import com.example.chronosnap.domain.entities.NotificationParameters;
 import com.example.chronosnap.domain.entities.User;
 import com.example.chronosnap.ui.viewmodel.SettingsVM;
 import com.example.chronosnap.utils.ValidCheckers;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class EditInfoFragment extends Fragment {
 
@@ -63,7 +65,8 @@ public class EditInfoFragment extends Fragment {
 
 
         binding.saveBtn.setOnClickListener(v -> {
-            String id = vm.getUser().getValue().getId();
+
+            String id = vm.getUser ().getValue().getId();
             String un = binding.usernameEt.getText().toString().trim();
             String email = binding.emailEt.getText().toString().trim();
             String password = binding.passwordEt.getText().toString().trim();
@@ -72,15 +75,14 @@ public class EditInfoFragment extends Fragment {
             String intervalStr = binding.intervalEt.getText().toString().trim();
 
             int interval = 0;
-            int h1 = 0, m1 = 0, h2 = 0, m2 = 0;
             boolean correct = true;
 
-            if (un.equals("")) {
+            if (un.isEmpty()) {
                 binding.usernameEt.setError(getString(R.string.empty_string));
                 correct = false;
             }
 
-            if (email.equals("")) {
+            if (email.isEmpty()) {
                 binding.emailEt.setError(getString(R.string.empty_string));
                 correct = false;
             } else if (!vc.isValidEmail(email)) {
@@ -88,7 +90,7 @@ public class EditInfoFragment extends Fragment {
                 correct = false;
             }
 
-            if (password.equals("")) {
+            if (password.isEmpty()) {
                 binding.passwordEt.setError(getString(R.string.empty_string));
                 correct = false;
             } else if (!vc.isValidPassword(password)) {
@@ -96,7 +98,7 @@ public class EditInfoFragment extends Fragment {
                 correct = false;
             }
 
-            if (intervalStr.equals("")) {
+            if (intervalStr.isEmpty()) {
                 binding.intervalEt.setError(getString(R.string.empty_string));
                 correct = false;
             } else {
@@ -114,20 +116,43 @@ public class EditInfoFragment extends Fragment {
             }
 
             if (correct) {
-                User updateUser = new User(
-                        id, un, email, vm.getUser().getValue().getCategories()
+                User updateUser  = new User(
+                        id, un, email, vm.getUser ().getValue().getCategories()
                 );
-                vm.setUser(updateUser, requireContext());
-                navController.navigate(R.id.action_to_settings);
+
+                vm.setUser (updateUser , requireContext());
+
+                FirebaseUser firebaseUser  = FirebaseAuth.getInstance().getCurrentUser ();
+                if (firebaseUser  != null) {
+                    firebaseUser .updatePassword(password).addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(requireContext(), "Пароль успешно изменён", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(requireContext(), "Ошибка изменения пароля", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+
+                firebaseUser.updateEmail(email).addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(requireContext(), "Email успешно изменён", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(requireContext(), "Ошибка изменения email", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
                 NotificationParameters np = new NotificationParameters(vm.getSettings().getValue().isEnabled(),
-                        h1, m1, h2, m2, interval);
+                        0, 0, 0, 0, interval);
                 vm.updateSettingsPreferences(requireContext(), np);
+
+                navController.navigate(R.id.action_to_settings);
             }
         });
 
         binding.back.setOnClickListener(v -> {
             navController.navigate(R.id.action_to_settings);
         });
+
 
         return binding.getRoot();
     }
@@ -147,13 +172,16 @@ public class EditInfoFragment extends Fragment {
                 editText.removeTextChangedListener(this);
                 String str = s.toString().replace(":", "");
                 StringBuilder formatted = new StringBuilder();
-                if (str.length()>2){
-                    for (int i=0; i< str.length();i++){
-                        if (i==2) formatted.append(":");
-                        else formatted.append(str.charAt(i));
+                if (str.length() > 2) {
+                    for (int i = 0; i < str.length(); i++) {
+                        if (i == 2) formatted.append(":");
+                        formatted.append(str.charAt(i));
                     }
+                } else {
+                    formatted.append(str);
                 }
                 editText.setText(formatted);
+                editText.setSelection(formatted.length());
                 editText.addTextChangedListener(this);
             }
 
@@ -161,5 +189,6 @@ public class EditInfoFragment extends Fragment {
             public void afterTextChanged(Editable s) {}
         });
     }
+
 
 }

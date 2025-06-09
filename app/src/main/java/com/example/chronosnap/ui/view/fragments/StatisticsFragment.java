@@ -18,12 +18,14 @@ import com.example.chronosnap.domain.usecases.GetDayActivityEntriesUseCase;
 import com.example.chronosnap.domain.usecases.GetEntriesByCategoriesUseCase;
 import com.example.chronosnap.utils.ChartUtils;
 import com.example.chronosnap.databinding.FragmentStatisticsBinding;
+import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieEntry;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class StatisticsFragment extends Fragment {
@@ -36,31 +38,42 @@ public class StatisticsFragment extends Fragment {
         binding = FragmentStatisticsBinding.inflate(inflater, container, false);
 
         LocalDate today = LocalDate.now();
-        ChartUtils.setupPieChart(binding.dayPieChart,
-                getPieEntries(getCategoriesDurations(today.toString(), today.toString())),
-                getPieEntriesColors(getCategoriesDurations(today.toString(), today.toString())));
-        ChartUtils.setupPieChart(binding.weekPieChart,
-                getPieEntries(getCategoriesDurations(today.with(DayOfWeek.MONDAY).toString(), today.toString())),
-                getPieEntriesColors(getCategoriesDurations(today.with(DayOfWeek.MONDAY).toString(), today.toString())));
-        ChartUtils.setupPieChart(binding.weekPieChart,
-                getPieEntries(getCategoriesDurations(today.withDayOfMonth(1).toString(), today.toString())),
-                getPieEntriesColors(getCategoriesDurations(today.withDayOfMonth(1).toString(), today.toString())));
-        return binding.getRoot();
+        String todayStr = today.toString();
+        String weekStart = today.with(DayOfWeek.MONDAY).toString();
+        String monthStart = today.withDayOfMonth(1).toString();
 
+        loadChart(binding.dayPieChart, todayStr, todayStr);
+        loadChart(binding.weekPieChart, weekStart, todayStr);
+        loadChart(binding.monthPieChart, monthStart, todayStr);
+
+        return binding.getRoot();
     }
 
-    private Map<Map.Entry<String, Integer>, Long> getCategoriesDurations(String startDate, String finishDate) {
+    private void loadChart(PieChart chart, String startDate, String endDate) {
         AppDatabase db = Room.databaseBuilder(requireContext(), AppDatabase.class, "db").build();
-        GetEntriesByCategoriesUseCase getEntriesByCategoriesUseCase = new GetEntriesByCategoriesUseCase
-                (new GetDayActivityEntriesUseCase(new ActivityEntriesRepository
-                        (db,new ActivityEntryRemoteDataSource())));
-        return getEntriesByCategoriesUseCase.execute(startDate, finishDate).getValue();
+
+        GetEntriesByCategoriesUseCase getEntriesByCategoriesUseCase = new GetEntriesByCategoriesUseCase(
+                new GetDayActivityEntriesUseCase(
+                        new ActivityEntriesRepository(db, new ActivityEntryRemoteDataSource())
+                )
+        );
+
+        getEntriesByCategoriesUseCase.execute(startDate, endDate).observe(getViewLifecycleOwner(), categoryDurations -> {
+            if (categoryDurations != null && !categoryDurations.isEmpty()) {
+                List<PieEntry> entries = getPieEntries(categoryDurations);
+                List<Integer> colors = getPieEntriesColors(categoryDurations);
+                ChartUtils.setupPieChart(chart, entries, colors);
+            } else {
+                chart.clear();
+                chart.setNoDataText("Нет данных");
+            }
+        });
     }
 
     private ArrayList<PieEntry> getPieEntries(Map<Map.Entry<String, Integer>, Long> categoryDurations) {
         ArrayList<PieEntry> pieEntries = new ArrayList<>();
         for (Map.Entry<Map.Entry<String, Integer>, Long> entry : categoryDurations.entrySet()) {
-            pieEntries.add(new PieEntry(entry.getValue(), entry.getKey().getValue()));
+            pieEntries.add(new PieEntry(entry.getValue(), entry.getKey().getKey())); // key = category name
         }
         return pieEntries;
     }

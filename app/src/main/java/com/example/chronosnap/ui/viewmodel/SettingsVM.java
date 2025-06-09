@@ -26,7 +26,8 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.TreeMap;
 
 public class SettingsVM extends ViewModel {
-    private final UserRepository repo = new UserRepository();
+    private final String uid = FirebaseAuth.getInstance().getUid();
+    private final UserRepository repo = new UserRepository(uid);
     private final MutableLiveData<User> user = new MutableLiveData<>();
     private final MutableLiveData<TreeMap<String, Integer>> categories = repo.getCategoriesLiveData();
     private final MutableLiveData<NotificationParameters> settings = new MutableLiveData<>();
@@ -39,20 +40,20 @@ public class SettingsVM extends ViewModel {
         return user;
     }
 
-    public void setUser(User updatedUser, Context context) {
+    public void setUser (User updatedUser , Context context) {
         user.setValue(updatedUser);
         updateUser(context);
     }
 
-    public void updateUser(Context context) {
-        User updatedUser = user.getValue();
-        if (updatedUser == null) return;
-
-        repo.updateUser(updatedUser, task -> {
-            if (task.isSuccessful())
+    public void updateUser (Context context) {
+        User updatedUser  = user.getValue();
+        if (updatedUser  == null) return;
+        repo.updateUser(updatedUser , task -> {
+            if (task.isSuccessful()) {
                 Toast.makeText(context, "Настройки обновлены", Toast.LENGTH_SHORT).show();
-            else
+            } else {
                 Toast.makeText(context, "Ошибка сохранения", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 
@@ -119,6 +120,7 @@ public class SettingsVM extends ViewModel {
     public LiveData<TreeMap<String, Integer>> getCategories() {
         return categories;
     }
+
 
     public void onSave(TreeMap<String, Integer> updatedCategories) {
         repo.updateAllCategories(updatedCategories, task -> {
