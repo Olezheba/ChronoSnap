@@ -32,12 +32,11 @@ public class TaskVM extends ViewModel {
     }
 
     public void updateLists(String date){
-        GetTasksForDayUseCase getTasksForDayUseCase = new GetTasksForDayUseCase
-                (new TaskRepository(db, new TaskRemoteDataSource()));
-        list1.postValue(getTasksForDayUseCase.execute(date, 1).getValue());
-        list2.postValue(getTasksForDayUseCase.execute(date, 2).getValue());
-        list3.postValue(getTasksForDayUseCase.execute(date, 3).getValue());
-        list4.postValue(getTasksForDayUseCase.execute(date, 4).getValue());
+        TaskRepository repo = new TaskRepository(db, new TaskRemoteDataSource());
+        repo.getTasks(date, 1).observeForever(tasks -> list1.postValue(tasks));
+        repo.getTasks(date, 2).observeForever(tasks -> list2.postValue(tasks));
+        repo.getTasks(date, 3).observeForever(tasks -> list3.postValue(tasks));
+        repo.getTasks(date, 4).observeForever(tasks -> list4.postValue(tasks));
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)

@@ -17,6 +17,7 @@ import com.example.chronosnap.R;
 import com.example.chronosnap.data.system.USM;
 import com.example.chronosnap.ui.viewmodel.SettingsVM;
 import com.example.chronosnap.ui.viewmodel.StopwatchVM;
+import com.example.chronosnap.ui.viewmodelfactories.StopwatchVMFactory;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -48,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         settingsVM = new ViewModelProvider(this).get(SettingsVM.class);
-        stopwatchVM = new ViewModelProvider(this).get(StopwatchVM.class);
+        stopwatchVM = new ViewModelProvider(this, new StopwatchVMFactory(this)).get(StopwatchVM.class);
         stopwatchVM.isRunning().observe(this, isRunning -> {
             if (isRunning != null) {
                 if (isRunning) {

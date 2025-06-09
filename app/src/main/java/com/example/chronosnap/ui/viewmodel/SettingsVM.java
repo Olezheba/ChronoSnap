@@ -46,8 +46,8 @@ public class SettingsVM extends ViewModel {
     }
 
     public void updateUser (Context context) {
-        User updatedUser  = user.getValue();
-        if (updatedUser  == null) return;
+        User updatedUser = user.getValue();
+        if (updatedUser == null) return;
         repo.updateUser(updatedUser , task -> {
             if (task.isSuccessful()) {
                 Toast.makeText(context, "Настройки обновлены", Toast.LENGTH_SHORT).show();

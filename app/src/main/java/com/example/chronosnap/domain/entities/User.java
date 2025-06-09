@@ -4,10 +4,13 @@ import android.content.Context;
 
 import com.example.chronosnap.domain.usecases.CreateNewCategoriesMap;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.IgnoreExtraProperties;
 
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.UUID;
 
+@IgnoreExtraProperties
 public class User {
     private String id;
     private String email;
@@ -15,6 +18,7 @@ public class User {
     private Map<String, Integer> categories;
 
     public User(String un, String email, Context context) {
+        id = UUID.randomUUID().toString();
         username = un;
         this.email = email;
         categories = new TreeMap<>(CreateNewCategoriesMap.execute(context));

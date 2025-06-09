@@ -3,6 +3,7 @@ package com.example.chronosnap.ui.view.fragments;
 import static android.content.Context.MODE_PRIVATE;
 import static androidx.databinding.DataBindingUtil.setContentView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;

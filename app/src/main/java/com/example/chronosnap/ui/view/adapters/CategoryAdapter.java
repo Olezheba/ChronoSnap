@@ -51,15 +51,15 @@ public class CategoryAdapter extends ArrayAdapter<Map.Entry<String, Integer>> {
         tv.setText(category.getKey());
         ((MaterialCardView)convertView.findViewById(R.id.category_color)).setCardBackgroundColor(category.getValue());
 
-        if (!isSpinner) {
-            ImageButton edit = convertView.findViewById(R.id.edit_category_btn);
-            if (position<10){
-                edit.setVisibility(View.INVISIBLE);
-            }
-            edit.setOnClickListener(v -> {
-                //TODO: изменение/удаление категории / use case
-            });
-        }
+//        if (!isSpinner) {
+//            ImageButton edit = convertView.findViewById(R.id.edit_category_btn);
+//            if (position<10){
+//                edit.setVisibility(View.INVISIBLE);
+//            }
+//            edit.setOnClickListener(v -> {
+//                //TODO: изменение/удаление категории / use case
+//            });
+//        }
 
         return convertView;
     }

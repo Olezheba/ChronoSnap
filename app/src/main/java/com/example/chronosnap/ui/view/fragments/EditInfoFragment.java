@@ -11,6 +11,7 @@ import android.text.Editable;
 import android.text.InputType;
 import android.text.InputFilter;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -117,32 +118,39 @@ public class EditInfoFragment extends Fragment {
 
             if (correct) {
                 User updateUser  = new User(
-                        id, un, email, vm.getUser ().getValue().getCategories()
+                        id, un, email, vm.getUser().getValue().getCategories()
                 );
 
-                vm.setUser (updateUser , requireContext());
+                int startHour = vc.getTimeUnit(startTime, true);
+                int startMinute = vc.getTimeUnit(startTime, false);
+                int finishHour = vc.getTimeUnit(finishTime, true);
+                int finishMinute = vc.getTimeUnit(finishTime, false);
+
+                vm.setUser(updateUser, requireContext());
+                Log.d("editInfo", vm.getUser().getValue().getCategories().toString());
 
                 FirebaseUser firebaseUser  = FirebaseAuth.getInstance().getCurrentUser ();
-                if (firebaseUser  != null) {
-                    firebaseUser .updatePassword(password).addOnCompleteListener(task -> {
+                if (firebaseUser != null) {
+                    firebaseUser.updatePassword(password).addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
                             Toast.makeText(requireContext(), "Пароль успешно изменён", Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(requireContext(), "Ошибка изменения пароля", Toast.LENGTH_SHORT).show();
                         }
                     });
+                    firebaseUser.updateEmail(email).addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(requireContext(), "Email успешно изменён", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(requireContext(), "Ошибка изменения email", Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
 
-                firebaseUser.updateEmail(email).addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        Toast.makeText(requireContext(), "Email успешно изменён", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(requireContext(), "Ошибка изменения email", Toast.LENGTH_SHORT).show();
-                    }
-                });
+
 
                 NotificationParameters np = new NotificationParameters(vm.getSettings().getValue().isEnabled(),
-                        0, 0, 0, 0, interval);
+                        startHour, startMinute, finishHour, finishMinute, interval);
                 vm.updateSettingsPreferences(requireContext(), np);
 
                 navController.navigate(R.id.action_to_settings);
@@ -189,6 +197,7 @@ public class EditInfoFragment extends Fragment {
             public void afterTextChanged(Editable s) {}
         });
     }
+
 
 
 }

@@ -32,4 +32,21 @@ public class ValidCheckers {
 
         return true;
     }
+
+    public int getTimeUnit(String s, boolean b){
+        String[] parts = s.split(":");
+        if (b){
+            if (parts[0].charAt(0)=='0'){
+                return Integer.parseInt(String.valueOf(parts[0].charAt(1)));
+            }else{
+                return Integer.parseInt(parts[0]);
+            }
+        }else{
+            if (parts[1].charAt(0)=='0'){
+                return Integer.parseInt(String.valueOf(parts[1].charAt(1)));
+            }else{
+                return Integer.parseInt(parts[1]);
+            }
+        }
+    }
 }

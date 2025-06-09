@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.chronosnap.ui.view.adapters.CategoryAdapter;
 import com.example.chronosnap.ui.viewmodel.StopwatchVM;
 import com.example.chronosnap.databinding.DialogStopwatchSavingBinding;
+import com.example.chronosnap.ui.viewmodelfactories.StopwatchVMFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +35,7 @@ public class SaveRecordDialogFragment extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         binding = DialogStopwatchSavingBinding.inflate(inflater, container, false);
-        vm = new ViewModelProvider(requireActivity()).get(StopwatchVM.class);
+        vm = new ViewModelProvider(requireActivity(), new StopwatchVMFactory(requireContext())).get(StopwatchVM.class);
 
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 

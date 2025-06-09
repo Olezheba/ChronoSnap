@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.example.chronosnap.ui.view.dialogs.SaveRecordDialogFragment;
 import com.example.chronosnap.ui.viewmodel.StopwatchVM;
 import com.example.chronosnap.databinding.FragmentStopwatchBinding;
+import com.example.chronosnap.ui.viewmodelfactories.StopwatchVMFactory;
 
 public class StopwatchFragment extends Fragment {
     FragmentStopwatchBinding binding;
@@ -24,7 +25,7 @@ public class StopwatchFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        vm = new ViewModelProvider(requireActivity()).get(StopwatchVM.class);
+        vm = new ViewModelProvider(requireActivity(), new StopwatchVMFactory(requireContext())).get(StopwatchVM.class);
         binding = FragmentStopwatchBinding.inflate(inflater, container, false);
 
         if (vm.isRunning().getValue()) startStopwatch(vm.getStart());

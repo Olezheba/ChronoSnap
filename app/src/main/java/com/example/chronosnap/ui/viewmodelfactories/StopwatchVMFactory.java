@@ -5,26 +5,26 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.room.Room;
 
 import com.example.chronosnap.AppDatabaseSingleton;
 import com.example.chronosnap.data.persistentstorage.AppDatabase;
-import com.example.chronosnap.ui.viewmodel.TaskVM;
-import com.example.chronosnap.ui.viewmodel.TimelineVM;
+import com.example.chronosnap.ui.viewmodel.StopwatchVM;
 
-public class TaskVMFactory extends ViewModelProvider.NewInstanceFactory {
+public class StopwatchVMFactory extends ViewModelProvider.NewInstanceFactory {
     private final Context context;
-    public TaskVMFactory(Context context) {
+    public StopwatchVMFactory(Context context) {
         this.context = context;
     }
 
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass){
-        if (modelClass == TaskVM.class) {
+        if (modelClass == StopwatchVM.class) {
             AppDatabase db = AppDatabaseSingleton.getInstance(context);
-            return (T) new TaskVM(db);
+            return (T) new StopwatchVM(db);
         }
         return null;
     }
+
 }
+
